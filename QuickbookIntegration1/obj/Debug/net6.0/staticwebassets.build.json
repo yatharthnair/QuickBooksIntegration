@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0pfcXiFT8u5qtkTY4kjKhlxcoNfdcA3/39u4YfxS/sY=",
+  "Hash": "RpoBpC2+1Ki1ObqHlzMXXjEw7+OBl8a2Clb7GOPXLXQ=",
   "Source": "QuickbookIntegration1",
   "BasePath": "_content/QuickbookIntegration1",
   "Mode": "Default",
@@ -136,6 +136,23 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap-reboot.css"
     },
     {
+      "Identity": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\css\\login.css",
+      "SourceId": "QuickbookIntegration1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\",
+      "BasePath": "_content/QuickbookIntegration1",
+      "RelativePath": "css/login.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\login.css"
+    },
+    {
       "Identity": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\css\\owl.carousel.min.css",
       "SourceId": "QuickbookIntegration1",
       "SourceType": "Discovered",
@@ -151,23 +168,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\owl.carousel.min.css"
-    },
-    {
-      "Identity": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\css\\style.css",
-      "SourceId": "QuickbookIntegration1",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\",
-      "BasePath": "_content/QuickbookIntegration1",
-      "RelativePath": "css/style.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\style.css"
     },
     {
       "Identity": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\favicon.ico",

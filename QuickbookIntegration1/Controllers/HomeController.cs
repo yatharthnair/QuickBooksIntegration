@@ -40,11 +40,26 @@ namespace IntegrationWithQuickbooks.Controllers
 
             if (!authenticateResult.Succeeded)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Privacy","Home");
             }
             var email = authenticateResult.Principal.FindFirst(ClaimTypes.Email)?.Value;
 
-            return RedirectToAction("Privacy");
+            return RedirectToAction("AddVendor","Home");
+        }
+        public IActionResult dashboard()
+        {
+            return View();
+        }
+
+    
+        public IActionResult AddVendor()
+        {
+            return View();  
+        }
+        
+        public IActionResult ViewVendor()
+        {
+            return View();  
         }
 
 

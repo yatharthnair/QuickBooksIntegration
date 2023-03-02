@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewData["Title"] = "AddVendor";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<!-- Bootstrap core JS-->
+
+<div class="flex-row" mt-4" id="div2">
+
+    <form>
+        <div class="form-group">
+            <label for="Suffix">Suffix </label>
+            <select id="Suffix" name="Suffix">
+                <option value="Mr">Mr.</option>
+                <option value="Ms">Ms.</option>
+                <option value="Mrs">Mrs.</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="firstname">First Name : </label>
+            <input type="text" class="form-control" name="firstname" required>
+        </div>
+
+        <div class="form-group">
+            <label for="Lastname">Last Name : </label>
+            <input type="text" class="form-control" name="Lastname" required>
+        </div>
+
+        <div class="form-group">
+            <label for="Email">Email : </label>
+            <input type="email" class="form-control" name="Email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="PanID">Pan ID :</label>
+            <input type="text" class="form-control" name="PanID" required>
+        </div>
+
+        <div class="form-group">
+            <label for="GSTNo">GST No. : </label>
+            <input type="text" class="form-control" name="GSTNo" required>
+        </div>
+
+        <div class="form-group">
+            <label for="Contact">Contact : </label>
+            <input type="tel" class="form-control" name="Contact" required>
+        </div>
+
+        <div class="form-group">
+            <label for="VendorBusiness">Vendor Business : </label>
+            <select id="VendorBusiness" name="VendorBusiness">
+                <option value="Clothing">Clothing</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Grocery">Grocery</option>
+            </select>
+        </div>
+
+        <input type="submit" value="Submit" class="btn btn-primary">
+    </form>
+    <script src="vendorform.js"></script>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

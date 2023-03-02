@@ -25,12 +25,12 @@
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap-reboot.css"
     },
     {
-      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\css\\owl.carousel.min.css",
-      "PackagePath": "staticwebassets\\css\\owl.carousel.min.css"
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\css\\login.css",
+      "PackagePath": "staticwebassets\\css\\login.css"
     },
     {
-      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\css\\style.css",
-      "PackagePath": "staticwebassets\\css\\style.css"
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\css\\owl.carousel.min.css",
+      "PackagePath": "staticwebassets\\css\\owl.carousel.min.css"
     },
     {
       "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\favicon.ico",

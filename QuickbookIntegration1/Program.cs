@@ -3,12 +3,19 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using System.Configuration;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddAuthentication()   
+builder.Services.AddAuthentication(options => 
+{
+    options.DefaultAuthenticateScheme = "MyScheme";
+    options.DefaultChallengeScheme = "MyScheme";
+    options.DefaultSignInScheme = "MyScheme";
+})
+    .AddCookie("MyScheme")
     .AddGoogle(options =>
        {
            options.ClientId = "307094912648-fefo2k2rlla1igu67tt2t4j0bm9mrm2i.apps.googleusercontent.com";
@@ -24,7 +31,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
+app.UseAuthentication();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 

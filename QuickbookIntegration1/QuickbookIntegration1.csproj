@@ -151,6 +151,7 @@
   <ItemGroup>
     <PackageReference Include="IppDotNetSdkForQuickBooksApiV3" Version="14.6.3.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.14" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.12" />
   </ItemGroup>
 
 </Project>
