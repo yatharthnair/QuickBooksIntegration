@@ -1,18 +1,23 @@
-﻿using IntegrationWithQuickbooks.Models;
+﻿
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
+using QuickbookIntegration1.Models;
+
 namespace IntegrationWithQuickbooks.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+
         }
 
         public IActionResult Index()
@@ -40,33 +45,47 @@ namespace IntegrationWithQuickbooks.Controllers
 
             if (!authenticateResult.Succeeded)
             {
-                return RedirectToAction("Privacy","Home");
+                return RedirectToAction("Privacy", "Home");
             }
             var email = authenticateResult.Principal.FindFirst(ClaimTypes.Email)?.Value;
 
-            return RedirectToAction("AddVendor","Home");
+            return RedirectToAction("AddVendor", "Home");
         }
         public IActionResult dashboard()
         {
             return View();
         }
 
-    
+
         public IActionResult AddVendor()
         {
-            return View();  
+            return View();
         }
-        
+        public IActionResult AddVendors()
+        {
+            return View();
+        }
+
         public IActionResult ViewVendor()
         {
-            return View();  
+            return View();
         }
 
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost]
+        public ActionResult AddVendor(VendorList model)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            using (var context = new QuickBooksContext())
+            {
+                context.VendorLists.Add(model);
+                context.SaveChanges();
+            }
+            return View();
         }
     }
 }
+        /*[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }*/
+    
