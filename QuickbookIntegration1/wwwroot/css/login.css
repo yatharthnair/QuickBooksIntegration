@@ -201,6 +201,7 @@ h2 {
 }
 
 .dash{
+    height:80vh;
     display:flex;
     gap:2em;
 }
