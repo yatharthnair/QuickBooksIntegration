@@ -1,6 +1,19 @@
 body {
-  font-family: "Roboto", sans-serif;
-  background-color: #f8fafb; }
+    font-family: "Roboto", sans-serif;
+    background-color: #f8fafb;
+}
+    
+.loginpage{
+    background-image: url(../images/top-view-finance-business-elements.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.bg-color{
+    background-color:rgba(0,0,0,0);
+    height:100%;
+}
 
 p {
   color: #b3b3b3;
@@ -59,7 +72,6 @@ h2 {
       border-bottom-right-radius: 7px; }
     .content .contents .form-group label, .content .bg .form-group label {
       font-size: 12px;
-      display: block;
       margin-bottom: 0;
       color: #b3b3b3; }
     .content .contents .form-group.focus, .content .bg .form-group.focus {
@@ -103,7 +115,7 @@ h2 {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  display: inline-block; }
+   }
   .social-login a span {
     position: absolute;
     top: 50%;
@@ -113,13 +125,52 @@ h2 {
     transform: translate(-50%, -50%); }
   .social-login a:hover {
     color: #fff; }
-  .social-login a.google {
-    background: #ea4335; }
+    .social-login a.google {
+        background-color : black;
+        }
     .social-login a.google:hover {
       background: #e82e1e; }
 
+.g-signin-button {
+    display: inline-block;
+    background-color: white;
+    color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+    padding: 0 16px;
+    font-size: 14px;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+    .g-signin-button:hover {
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+    }
+
+.icon-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 16px;
+}
+
+    .icon-wrapper img {
+        height: 18px;
+        width: 18px;
+    }
+.login{
+    display:flex;
+    flex-wrap:wrap;
+}
+.button-text {
+    font-family :Verdana, Geneva, Tahoma, sans-serif;
+    color: grey;
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: 500;
+}
+
+
 .control {
-  display: block;
   position: relative;
   padding-left: 30px;
   margin-bottom: 15px;
@@ -174,7 +225,6 @@ h2 {
   transition: .3s all ease; }
 
 .control input:checked ~ .control__indicator:after {
-  display: block;
   color: #fff; }
 
 .control--checkbox .control__indicator:after {

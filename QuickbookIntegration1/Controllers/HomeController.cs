@@ -94,22 +94,5 @@ namespace IntegrationWithQuickbooks.Controllers
             }
             return View();
         }
-        //public static string clientId = "ABmvAWjedrPeDs7xZZm7OmVtskZ7yxg4S3wvlKq2sbOzClLvf9";
-        //public static string clientSecret = "vVxCwSHNZXitBtNjYfDbcGZaDJxY33M6vJpdrZBm";
-        //public static string redirectUrl = "https://localhost:7092/callback";
-        //public static string environment = "sandbox";
-
-        //public static OAuth2Client oauthClient = new OAuth2Client(clientId, clientSecret, redirectUrl, environment);
-        //public IActionResult Initiateoauth2()
-        //{
-        //    List<OidcScopes> scopes = new List<OidcScopes>();
-        //    scopes.Add(OidcScopes.Accounting);
-        //    string authUrl = oauthClient.GetAuthorizationURL(scopes);
-        //    return Redirect(authUrl);
-
-        //}
-
-       
-
     }
 }

@@ -41,6 +41,38 @@
       "PackagePath": "staticwebassets\\fonts\\.DS_Store"
     },
     {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\fonts\\Space_Grotesk\\OFL.txt",
+      "PackagePath": "staticwebassets\\fonts\\Space_Grotesk\\OFL.txt"
+    },
+    {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\fonts\\Space_Grotesk\\README.txt",
+      "PackagePath": "staticwebassets\\fonts\\Space_Grotesk\\README.txt"
+    },
+    {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\fonts\\Space_Grotesk\\SpaceGrotesk-VariableFont_wght.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Space_Grotesk\\SpaceGrotesk-VariableFont_wght.ttf"
+    },
+    {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\fonts\\Space_Grotesk\\static\\SpaceGrotesk-Bold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Space_Grotesk\\static\\SpaceGrotesk-Bold.ttf"
+    },
+    {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\fonts\\Space_Grotesk\\static\\SpaceGrotesk-Light.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Space_Grotesk\\static\\SpaceGrotesk-Light.ttf"
+    },
+    {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\fonts\\Space_Grotesk\\static\\SpaceGrotesk-Medium.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Space_Grotesk\\static\\SpaceGrotesk-Medium.ttf"
+    },
+    {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\fonts\\Space_Grotesk\\static\\SpaceGrotesk-Regular.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Space_Grotesk\\static\\SpaceGrotesk-Regular.ttf"
+    },
+    {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\fonts\\Space_Grotesk\\static\\SpaceGrotesk-SemiBold.ttf",
+      "PackagePath": "staticwebassets\\fonts\\Space_Grotesk\\static\\SpaceGrotesk-SemiBold.ttf"
+    },
+    {
       "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\fonts\\icomoon\\Read Me.txt",
       "PackagePath": "staticwebassets\\fonts\\icomoon\\Read Me.txt"
     },
@@ -85,8 +117,28 @@
       "PackagePath": "staticwebassets\\images\\.DS_Store"
     },
     {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\Intuit-Quickbooks.svg",
+      "PackagePath": "staticwebassets\\images\\Intuit-Quickbooks.svg"
+    },
+    {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\background.jpg",
+      "PackagePath": "staticwebassets\\images\\background.jpg"
+    },
+    {
       "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\bg_1.jpg",
       "PackagePath": "staticwebassets\\images\\bg_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\googleImg.png",
+      "PackagePath": "staticwebassets\\images\\googleImg.png"
+    },
+    {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\index1.jpg",
+      "PackagePath": "staticwebassets\\images\\index1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\quickbooksLogo.png",
+      "PackagePath": "staticwebassets\\images\\quickbooksLogo.png"
     },
     {
       "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\undraw_remotely_2j6y.svg",

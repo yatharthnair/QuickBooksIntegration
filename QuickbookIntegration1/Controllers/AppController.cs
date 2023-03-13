@@ -7,6 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using QuickbookIntegration1.Models;
+using Intuit.Ipp.Data;
+using Intuit.Ipp.Core.Configuration;
+using System.Security.Cryptography.X509Certificates;
+using Intuit.Ipp.DataService;
+
 
 namespace QuickbookIntegration1.Controllers
 {
@@ -19,12 +24,12 @@ namespace QuickbookIntegration1.Controllers
 
         public static OAuth2Client oauthClient = new OAuth2Client(clientId, clientSecret, redirectUrl, environment);
 
-       
+
 
         public ActionResult Index()
         {
-            HttpContext.Session.Clear(); // Clear the session data
-            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme); // Sign out the authentication cookie
+            HttpContext.Session.Clear();
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return View();
         }
 
@@ -37,40 +42,88 @@ namespace QuickbookIntegration1.Controllers
 
         }
 
-        public ActionResult ApiCallService(VendorList vendorList)
+
+        public ActionResult ApiCallService()
         {
-            //HttpContext.Session.SetString("key", "value");
+            string access_token = TempData["Access_token"] as string;
+            string refresh_token = TempData["Refresh_token"] as string;
+            string realmId = TempData["RealmId"] as string;
+            var vendorId = 59;
+            var principal = User as ClaimsPrincipal;
+            OAuth2RequestValidator oauthValidator = new OAuth2RequestValidator(access_token);
 
-            if (HttpContext.Session.Get("realmId") != null)
+
+            // Create a ServiceContext with Auth tokens and realmId
+            ServiceContext serviceContext = new ServiceContext(realmId, IntuitServicesType.QBO, oauthValidator);
+            serviceContext.IppConfiguration.BaseUrl.Qbo = "https://sandbox-quickbooks.api.intuit.com/";
+            serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
+            /*var dataService = new DataService(serviceContext);
+            Vendor vendor = new Vendor();
+           
+            vendor.MiddleName = "Singh";
+            vendor.Suffix = "Sr.";
+            vendor.Title = "Ms.";
+            vendor.FamilyName = "Negi";
+            vendor.GivenName = "Kanishka";
+            dataService.Add<Vendor>(vendor);*/
+           
+            return View();
+        }
+    } 
+}
+           /* var vendor = dataService.FindById(new Vendor(),vendorId) as Vendor;
+
+            if (vendor != null)
             {
-                string realmId = HttpContext.Session.Get("realmId").ToString();
-                try
-                {
-                    var principal = User as ClaimsPrincipal;
-                    OAuth2RequestValidator oauthValidator = new OAuth2RequestValidator(principal.FindFirst("access_token").Value);
+                Console.WriteLine($"Vendor Name: {vendor.DisplayName}");
+                Console.WriteLine($"Vendor Email: {vendor.PrimaryEmailAddr.Address}");
+                Console.ReadLine();
+            }
+            else
+            {
+                Console.WriteLine($"Vendor with ID {vendorId} not found.");
+                Console.ReadLine();
+            }
+            return View();  
+        }
+         */
 
-                    // Create a ServiceContext with Auth tokens and realmId
-                    ServiceContext serviceContext = new ServiceContext(realmId, IntuitServicesType.QBO, oauthValidator);
-                    serviceContext.IppConfiguration.MinorVersion.Qbo = "23";
+            /*  if (HttpContext.Session.Get("realmId") != null)
+              {
+                  string realmId = "realmId";
+                  *//*try
+                  {*//*
+                  var principal = User as ClaimsPrincipal;
+                  OAuth2RequestValidator oauthValidator = new OAuth2RequestValidator("access_token");
 
-                    // Create a QuickBooks QueryService using ServiceContext
+
+                  // Create a ServiceContext with Auth tokens and realmId
+                  ServiceContext serviceContext = new ServiceContext(realmId, IntuitServicesType.QBO, oauthValidator);
+                  serviceContext.IppConfiguration.BaseUrl.Qbo = "https://sandbox-quickbooks.api.intuit.com/";
+                  serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
+
+              }*/
+
+
+                    /*// Create a QuickBooks QueryService using ServiceContext
                     QueryService<VendorList> querySvc = new QueryService<VendorList>(serviceContext);
-                    VendorList vendorlist = querySvc.ExecuteIdsQuery("SELECT * FROM VendorList").FirstOrDefault();
+                    VendorList vendorlist = querySvc.ExecuteIdsQuery().
+                        querySvc.ExecuteIdsQuery("SELECT * FROM VendorList").FirstOrDefault();
 
                     string output = "Suffix: " + vendorList.Suffix + "DisplayName: " + vendorList.DisplayName + " PrimaryEmailAddress: " + vendorList.PrimaryEmailAddress + "PanID " + vendorList.PanId + " GSTNo" + vendorList.Gstno + " Contact " + vendorList.Contact + "VendorBusiness" + vendorList.VendorBusiness;
                     return View("ApiCallService", (object)("QBO API call Successful!! Response: " + output));
                 }
                 catch (Exception ex)
                 {
-                    return View("ApiCallService", (object)("QBO A PI call Failed!" + " Error message: " + ex.Message));
+                    return View("ApiCallService", (object)("QBO API call Failed!" + " Error message: " + ex.Message));
                 }
             }
             else
                 return View("ApiCallService", (object)"QBO API call Failed!");
-        }
-        public ActionResult Tokens()
+*/
+/*        public ActionResult Tokens()
         {
             return View("Tokens");
         }
     }
-}
+}*/
