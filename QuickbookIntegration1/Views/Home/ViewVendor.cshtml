@@ -14,25 +14,37 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Suffix)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DisplayName)
+                @Html.DisplayNameFor(model => model.SyncToken)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PrimaryEmailAddress)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PanId)
+                @Html.DisplayNameFor(model => model.DisplayName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gstno)
+                @Html.DisplayNameFor(model => model.OtherContactInfo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Contact)
+                @Html.DisplayNameFor(model => model.Gstin)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VendorBusiness)
+                @Html.DisplayNameFor(model => model.BusinessNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrencyRef)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AcctNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BillAddr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Balance)
             </th>
             <th></th>
         </tr>
@@ -41,30 +53,39 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Suffix)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DisplayName)
+                @Html.DisplayFor(modelItem => item.SyncToken)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PrimaryEmailAddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PanId)
+                @Html.DisplayFor(modelItem => item.DisplayName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Gstno)
+                @Html.DisplayFor(modelItem => item.OtherContactInfo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Contact)
+                @Html.DisplayFor(modelItem => item.Gstin)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VendorBusiness)
+                @Html.DisplayFor(modelItem => item.BusinessNumber)
             </td>
             <td>
-                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                @Html.DisplayFor(modelItem => item.CurrencyRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AcctNum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BillAddr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
                     <a asp-action="Initiateoauth2" asp-controller="App">Authorize and Sync</a>
             </td>
         </tr>

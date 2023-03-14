@@ -70,12 +70,11 @@ namespace IntegrationWithQuickbooks.Controllers
             return View();
         }
 
-
         [HttpGet]
         public IActionResult ViewVendor()
         {
             var data = new List<VendorList>();
-            using (var context = new QuickBooksContext())
+            using (var context = new FinalDBContext())
             {
                 data = context.VendorLists.ToList();
             }
@@ -87,12 +86,43 @@ namespace IntegrationWithQuickbooks.Controllers
         [HttpPost]
         public ActionResult AddVendor(VendorList model)
         {
-            using (var context = new QuickBooksContext())
+            using (var context = new FinalDBContext())
             {
                 context.VendorLists.Add(model);
                 context.SaveChanges();
             }
             return View();
         }
+        public IActionResult AddAccount()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddAccount(accountlist model)
+        {
+            using (var context = new FinalDBContext())
+            {
+                context.AccountLists.Add(model);
+                context.SaveChanges();
+            }
+            return View();
+        }
+       
+        public IActionResult AddPurchaseOrder()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddPurchaseOrder(purchaseorder model)
+        {
+            using (var context = new FinalDBContext())
+            {
+                context.purchases.Add(model);
+                context.SaveChanges();
+            }
+            return View();
+        }
+        
+
     }
 }

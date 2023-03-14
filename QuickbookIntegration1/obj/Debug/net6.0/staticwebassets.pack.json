@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap-reboot.css"
     },
     {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\css\\dashboard.css",
+      "PackagePath": "staticwebassets\\css\\dashboard.css"
+    },
+    {
       "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\css\\login.css",
       "PackagePath": "staticwebassets\\css\\login.css"
     },
@@ -137,8 +141,16 @@
       "PackagePath": "staticwebassets\\images\\index1.jpg"
     },
     {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\pngwing.com.png",
+      "PackagePath": "staticwebassets\\images\\pngwing.com.png"
+    },
+    {
       "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\quickbooksLogo.png",
       "PackagePath": "staticwebassets\\images\\quickbooksLogo.png"
+    },
+    {
+      "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\top-view-finance-business-elements.jpg",
+      "PackagePath": "staticwebassets\\images\\top-view-finance-business-elements.jpg"
     },
     {
       "Id": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\undraw_remotely_2j6y.svg",

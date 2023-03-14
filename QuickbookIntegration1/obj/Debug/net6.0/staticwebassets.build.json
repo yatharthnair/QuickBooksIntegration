@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cDqpuJZ1+izXmpYUCEmpfKYQQ+zdU17uH/SwJ1zACV0=",
+  "Hash": "hgoQUsTg28zp77tKFcuhqX/dbvRN5hiycRijXQzPdSg=",
   "Source": "QuickbookIntegration1",
   "BasePath": "_content/QuickbookIntegration1",
   "Mode": "Default",
@@ -134,6 +134,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap-reboot.css"
+    },
+    {
+      "Identity": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\css\\dashboard.css",
+      "SourceId": "QuickbookIntegration1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\",
+      "BasePath": "_content/QuickbookIntegration1",
+      "RelativePath": "css/dashboard.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\dashboard.css"
     },
     {
       "Identity": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\css\\login.css",
@@ -612,6 +629,23 @@
       "OriginalItemSpec": "wwwroot\\images\\Intuit-Quickbooks.svg"
     },
     {
+      "Identity": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\pngwing.com.png",
+      "SourceId": "QuickbookIntegration1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\",
+      "BasePath": "_content/QuickbookIntegration1",
+      "RelativePath": "images/pngwing.com.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\pngwing.com.png"
+    },
+    {
       "Identity": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\quickbooksLogo.png",
       "SourceId": "QuickbookIntegration1",
       "SourceType": "Discovered",
@@ -627,6 +661,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\quickbooksLogo.png"
+    },
+    {
+      "Identity": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\top-view-finance-business-elements.jpg",
+      "SourceId": "QuickbookIntegration1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\",
+      "BasePath": "_content/QuickbookIntegration1",
+      "RelativePath": "images/top-view-finance-business-elements.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\top-view-finance-business-elements.jpg"
     },
     {
       "Identity": "C:\\Users\\lmgcs\\source\\repos\\QuickbookIntegration1\\QuickbookIntegration1\\wwwroot\\images\\undraw_remotely_2j6y.svg",

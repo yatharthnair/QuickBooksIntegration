@@ -11,12 +11,16 @@ using Intuit.Ipp.Data;
 using Intuit.Ipp.Core.Configuration;
 using System.Security.Cryptography.X509Certificates;
 using Intuit.Ipp.DataService;
-
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace QuickbookIntegration1.Controllers
 {
     public class AppController : Controller
+
     {
+
+        FinalDBContext db = new FinalDBContext();
+
         public static string clientId = "ABmvAWjedrPeDs7xZZm7OmVtskZ7yxg4S3wvlKq2sbOzClLvf9";
         public static string clientSecret = "vVxCwSHNZXitBtNjYfDbcGZaDJxY33M6vJpdrZBm";
         public static string redirectUrl = "https://localhost:7092/callback";
@@ -57,16 +61,24 @@ namespace QuickbookIntegration1.Controllers
             ServiceContext serviceContext = new ServiceContext(realmId, IntuitServicesType.QBO, oauthValidator);
             serviceContext.IppConfiguration.BaseUrl.Qbo = "https://sandbox-quickbooks.api.intuit.com/";
             serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
-            /*var dataService = new DataService(serviceContext);
+            var dataService = new DataService(serviceContext);
             Vendor vendor = new Vendor();
-           
-            vendor.MiddleName = "Singh";
-            vendor.Suffix = "Sr.";
-            vendor.Title = "Ms.";
-            vendor.FamilyName = "Negi";
-            vendor.GivenName = "Kanishka";
-            dataService.Add<Vendor>(vendor);*/
-           
+            //List <VendorList> vendorList = 
+            var data = db.VendorLists.ToList();
+
+            foreach (var item in data)
+            {
+                vendor.SyncToken = item.SyncToken.ToString();
+                /*vendor.PrimaryEmailAddr.Address= item.PrimaryEmailAddress;*/
+                vendor.DisplayName = item.DisplayName;
+                vendor.GSTIN = item.Gstin;
+                vendor.BusinessNumber = item.BusinessNumber;
+                vendor.CurrencyRef.Value = "USD";
+                vendor.CompanyName = item.CompanyName;
+                vendor.AcctNum = item.AcctNum.ToString();
+                vendor.Balance = item.Balance;
+                dataService.Add<Vendor>(vendor);
+            } 
             return View();
         }
     } 

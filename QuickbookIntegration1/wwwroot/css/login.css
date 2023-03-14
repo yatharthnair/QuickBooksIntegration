@@ -14,7 +14,9 @@ body {
     background-color:rgba(0,0,0,0);
     height:100%;
 }
-
+.navlogo{
+    height:5vh;
+}
 p {
   color: #b3b3b3;
   font-weight: 300; }

@@ -1,0 +1,40 @@
+﻿@model QuickbookIntegration1.Models.purchaseorder
+@{
+    ViewData["Title"] = "AddPurchaseOrder";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+<!-- Bootstrap core JS-->
+@*@using (Html.BeginForm("SubmitForm", "Home", FormMethod.Post, new { @class = "", role = "form", enctype = "multipart/form-data" }))
+{*@
+
+
+<div class="flex-row mt-4" id="div2">
+
+    <form method="post" asp-controller="Home" asp-action="AddPurchaseOrder">
+
+        <div class="form-group">
+            <label for="Id">ID : </label>
+            <input type="text" class="form-control" Id="id" required asp-for="Id">
+        </div>
+        <div class="form-group">
+            <label for="ApaccountRef">ApaccountRef : </label>
+            <input type="number" class="form-control" id="ApaccountRef" asp-for="ApaccountRef">
+        </div>
+
+        <div class="form-group">
+            <label for="VendorRef">VendorRef : </label>
+            <input type="text" class="form-control" id="VendorRef" required asp-for="VendorRef">
+        </div>
+
+        <div class="form-group">
+            <label for="Line0N">Line0N : </label>
+            <input type="text" class="form-control" id="Line0N" asp-for="Line0N">
+        </div>
+        <button class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script src="vendorform.js"></script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
