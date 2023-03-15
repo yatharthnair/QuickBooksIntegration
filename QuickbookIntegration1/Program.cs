@@ -11,8 +11,9 @@ using System.IdentityModel.Tokens;
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddAuthentication(options => 
+builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = "MyScheme";
     options.DefaultChallengeScheme = "MyScheme";
@@ -20,17 +21,23 @@ builder.Services.AddAuthentication(options =>
 })
     .AddCookie("MyScheme")
     .AddGoogle(options =>
-       {
-           options.ClientId = "307094912648-fefo2k2rlla1igu67tt2t4j0bm9mrm2i.apps.googleusercontent.com";
-           options.ClientSecret = "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";
-       });
+    {
+        options.ClientId = "307094912648-fefo2k2rlla1igu67tt2t4j0bm9mrm2i.apps.googleusercontent.com";
+        options.ClientSecret = "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";
+    });
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(120);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-   /* app.UseExceptionHandler("/Home/Error");*/
+    /* app.UseExceptionHandler("/Home/Error");*/
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
@@ -40,6 +47,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthorization();
 

@@ -18,14 +18,16 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace IntegrationWithQuickbooks.Controllers
 {
     public class HomeController : Controller
+
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHttpContextAccessor _context;
 
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHttpContextAccessor context)
         {
             _logger = logger;
-
+            _context = context;
         }
 
         public IActionResult Index()
@@ -53,12 +55,14 @@ namespace IntegrationWithQuickbooks.Controllers
 
             if (!authenticateResult.Succeeded)
             {
-                return RedirectToAction("Privacy", "Home");
+                return RedirectToAction("Index");
             }
             var email = authenticateResult.Principal.FindFirst(ClaimTypes.Email)?.Value;
-
+            _context.HttpContext.Session.SetString("email", email);
+            /*HttpContext.Session.SetString("userEmail", email);*/
             return RedirectToAction("AddVendor", "Home");
         }
+
         public IActionResult dashboard()
         {
             return View();
@@ -67,6 +71,13 @@ namespace IntegrationWithQuickbooks.Controllers
 
         public IActionResult AddVendor()
         {
+            var userEmail = _context.HttpContext.Session.GetString("email");
+            if (userEmail==null || userEmail == "")
+            {
+
+               return RedirectToAction("Index");
+            }
+
             return View();
         }
 
@@ -84,14 +95,20 @@ namespace IntegrationWithQuickbooks.Controllers
 
 
         [HttpPost]
-        public ActionResult AddVendor(vendor model)
+        public IActionResult AddVendor(vendor model)
         {
             using (var context = new NewDBContext())
             {
                 context.Vendors.Add(model);
                 context.SaveChanges();
             }
-            return View();
+            return RedirectToAction("ViewVendor");
+        }
+
+        public IActionResult logout()
+        {
+            _context.HttpContext.Session.Clear();
+            return RedirectToAction("Index");
         }
         /* public IActionResult AddAccount()
          {

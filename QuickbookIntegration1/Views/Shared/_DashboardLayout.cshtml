@@ -33,7 +33,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddVendor">DASHBOARD</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Log Out</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Log Out</a>
                         </li>
                     </ul>
                 </div>
@@ -43,7 +43,7 @@
     <div class="dash">
         <!-- Sidebar-->
         <div class="border-end sidebar" id="sidebar-wrapper">
-            <div class="sidebar-heading border-bottom bg-light">TASKS</div>
+            @*<div class="sidebar-heading border-bottom bg-light">TASKS</div>*@
             <div class="list-group list-group-flush">
                 <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="AddVendor">Add Vendor</a>
                 <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="AddAccount">Add Account</a>

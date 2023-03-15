@@ -63,7 +63,7 @@ namespace QuickbookIntegration1.Controllers
             serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
             var dataService = new DataService(serviceContext);
             Vendor vendor = new Vendor();
-            
+
             //List <VendorList> vendorList = 
             var data = db.Vendors.ToList();
 
@@ -74,16 +74,51 @@ namespace QuickbookIntegration1.Controllers
                 vendor.DisplayName = item.DisplayName;
                 vendor.GSTIN = item.Gstin;
                 vendor.BusinessNumber = item.BusinessNumber.ToString();
-                vendor.CurrencyRef.Value = "USD";
-              /*  vendor.CompanyName = item.CompanyName;*/
-               /* vendor.AcctNum = item.AcctNum.ToString();
-                vendor.Balance = item.Balance;*/
+                /* vendor.CurrencyRef.Value = "USD";*/
+                /*  vendor.CompanyName = item.CompanyName;*/
+                /* vendor.AcctNum = item.AcctNum.ToString();
+                 vendor.Balance = item.Balance;*/
                 dataService.Add<Vendor>(vendor);
-            } 
+            }
             return View();
         }
-    } 
+    }
 }
+       /* public ActionResult ()
+        {
+            string access_token = TempData["Access_token"] as string;
+            string refresh_token = TempData["Refresh_token"] as string;
+            string realmId = TempData["RealmId"] as string;
+            var vendorId = 59;
+            var principal = User as ClaimsPrincipal;
+            OAuth2RequestValidator oauthValidator = new OAuth2RequestValidator(access_token);
+
+
+            // Create a ServiceContext with Auth tokens and realmId
+            ServiceContext serviceContext = new ServiceContext(realmId, IntuitServicesType.QBO, oauthValidator);
+            serviceContext.IppConfiguration.BaseUrl.Qbo = "https://sandbox-quickbooks.api.intuit.com/";
+            serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
+            var dataService = new DataService(serviceContext);
+            Vendor vendor = new Vendor();
+
+            //List <VendorList> vendorList = 
+            var data = db.Vendors.ToList();
+
+            foreach (var item in data)
+            {
+                vendor.SyncToken = item.SyncToken.ToString();
+                *//*vendor.PrimaryEmailAddr.Address= item.PrimaryEmailAddress;*//*
+                vendor.DisplayName = item.DisplayName;
+                vendor.GSTIN = item.Gstin;
+                vendor.BusinessNumber = item.BusinessNumber.ToString();
+                *//* vendor.CurrencyRef.Value = "USD";*/
+                /*  vendor.CompanyName = item.CompanyName;*/
+                /* vendor.AcctNum = item.AcctNum.ToString();
+                 vendor.Balance = item.Balance;*//*
+                dataService.Add<Vendor>(vendor);
+            }
+            return View();
+        }*/
            /* var vendor = dataService.FindById(new Vendor(),vendorId) as Vendor;
 
             if (vendor != null)

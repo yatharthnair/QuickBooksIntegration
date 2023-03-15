@@ -7,8 +7,8 @@
 
 <h1>ViewVendor</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
+<p style="margin-right">
+    <a asp-action="AddVendor" asp-controller="Home">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -56,6 +56,7 @@
                 @Html.DisplayFor(modelItem => item.BusinessNumber)
             </td>
             <td>
+                @*<a href="/ControllerName/ActionName/id=@item.Id"><button>Sync</button></am>*@
                     <a asp-action="Initiateoauth2" asp-controller="App">Authorize and Sync</a>
             </td>
         </tr>

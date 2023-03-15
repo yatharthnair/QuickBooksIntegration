@@ -8,31 +8,31 @@
 
     <form method="post" asp-controller="Home" asp-action="AddVendor">
 
-        <div class="form-group">
+     @*   <div class="form-group">
             <label for="Id">ID : </label>
             <input type="text" class="form-control" Id="" required asp-for="Id">
-        </div>
+        </div>*@
         <div class="form-group">
-            <label for="Email">Email : </label>
+            <label for="Email">Email </label>
             <input type="email" class="form-control" id="Email" asp-for="PrimaryEmailAddress">
         </div>
 
         <div class="form-group">
-            <label for="Lastname">DisplayName : </label>
+            <label for="Lastname">DisplayName</label>
             <input type="text" class="form-control" id="DisplayName" required asp-for="DisplayName">
         </div>
 
         <div class="form-group">
-            <label for="Contact">Contact : </label>
+            <label for="Contact">Contact </label>
             <input type="tel" class="form-control" id="Contact" asp-for="OtherContactInfo">
         </div>
 
         <div class="form-group">
-            <label for="GSTNo">GST No. : </label>
+            <label for="GSTNo">GST No. </label>
             <input type="text" class="form-control" id="GSTNo" required asp-for="Gstin">
         </div>
         <div class="form-group">
-            <label for="Bussiness Number">BussinessNumber : </label>
+            <label for="Bussiness Number">BussinessNumber </label>
             <input type="tel" class="form-control" id="Contact" required asp-for="BusinessNumber">
         </div>
         <button class="btn btn-primary">Submit</button>
