@@ -73,10 +73,10 @@ namespace IntegrationWithQuickbooks.Controllers
         [HttpGet]
         public IActionResult ViewVendor()
         {
-            var data = new List<VendorList>();
-            using (var context = new FinalDBContext())
+            var data = new List<vendor>();
+            using (var context = new NewDBContext())
             {
-                data = context.VendorLists.ToList();
+                data = context.Vendors.ToList();
             }
 
             return View(data);
@@ -84,45 +84,45 @@ namespace IntegrationWithQuickbooks.Controllers
 
 
         [HttpPost]
-        public ActionResult AddVendor(VendorList model)
+        public ActionResult AddVendor(vendor model)
         {
-            using (var context = new FinalDBContext())
+            using (var context = new NewDBContext())
             {
-                context.VendorLists.Add(model);
+                context.Vendors.Add(model);
                 context.SaveChanges();
             }
             return View();
         }
-        public IActionResult AddAccount()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AddAccount(accountlist model)
-        {
-            using (var context = new FinalDBContext())
-            {
-                context.AccountLists.Add(model);
-                context.SaveChanges();
-            }
-            return View();
-        }
-       
-        public IActionResult AddPurchaseOrder()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AddPurchaseOrder(purchaseorder model)
-        {
-            using (var context = new FinalDBContext())
-            {
-                context.purchases.Add(model);
-                context.SaveChanges();
-            }
-            return View();
-        }
-        
+        /* public IActionResult AddAccount()
+         {
+             return View();
+         }
+         [HttpPost]
+         public ActionResult AddAccount(accountlist model)
+         {
+             using (var context = new FinalDBContext())
+             {
+                 context.AccountLists.Add(model);
+                 context.SaveChanges();
+             }
+             return View();
+         }
+
+         public IActionResult AddPurchaseOrder()
+         {
+             return View();
+         }
+         [HttpPost]
+          public ActionResult AddPurchaseOrder(PurchaseOrder model)
+         {
+             using (var context = new FinalDBContext())
+             {
+                 context.PurchaseOrders.Add(model);
+                 context.SaveChanges();
+             }
+             return View();
+         }*/
+
 
     }
 }

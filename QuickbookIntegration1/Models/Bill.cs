@@ -3,15 +3,14 @@ using System.Collections.Generic;
 
 namespace QuickbookIntegration1.Models
 {
-    public partial class InvoiceList
+    public partial class Bill
     {
         public int Id { get; set; }
+        public int VendorRef { get; set; }
         public string Line0N { get; set; } = null!;
-        public int CustomerRef { get; set; }
         public int SyncToken { get; set; }
         public string CurrencyRef { get; set; } = null!;
-        public int DocNumber { get; set; }
-        public string BillEmail { get; set; } = null!;
-        public int CustumerRef { get; set; }
+
+        public virtual vendor VendorRefNavigation { get; set; } = null!;
     }
 }

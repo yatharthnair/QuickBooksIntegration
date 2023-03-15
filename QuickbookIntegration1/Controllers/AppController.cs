@@ -19,7 +19,7 @@ namespace QuickbookIntegration1.Controllers
 
     {
 
-        FinalDBContext db = new FinalDBContext();
+        NewDBContext db = new NewDBContext();
 
         public static string clientId = "ABmvAWjedrPeDs7xZZm7OmVtskZ7yxg4S3wvlKq2sbOzClLvf9";
         public static string clientSecret = "vVxCwSHNZXitBtNjYfDbcGZaDJxY33M6vJpdrZBm";
@@ -63,8 +63,9 @@ namespace QuickbookIntegration1.Controllers
             serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
             var dataService = new DataService(serviceContext);
             Vendor vendor = new Vendor();
+            
             //List <VendorList> vendorList = 
-            var data = db.VendorLists.ToList();
+            var data = db.Vendors.ToList();
 
             foreach (var item in data)
             {
@@ -72,11 +73,11 @@ namespace QuickbookIntegration1.Controllers
                 /*vendor.PrimaryEmailAddr.Address= item.PrimaryEmailAddress;*/
                 vendor.DisplayName = item.DisplayName;
                 vendor.GSTIN = item.Gstin;
-                vendor.BusinessNumber = item.BusinessNumber;
+                vendor.BusinessNumber = item.BusinessNumber.ToString();
                 vendor.CurrencyRef.Value = "USD";
-                vendor.CompanyName = item.CompanyName;
-                vendor.AcctNum = item.AcctNum.ToString();
-                vendor.Balance = item.Balance;
+              /*  vendor.CompanyName = item.CompanyName;*/
+               /* vendor.AcctNum = item.AcctNum.ToString();
+                vendor.Balance = item.Balance;*/
                 dataService.Add<Vendor>(vendor);
             } 
             return View();

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<QuickbookIntegration1.Models.VendorList>
+﻿@model IEnumerable<QuickbookIntegration1.Models.vendor>
 
 @{
     ViewData["Title"] = "ViewVendor";
@@ -31,21 +31,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.BusinessNumber)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CurrencyRef)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CompanyName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AcctNum)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BillAddr)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Balance)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -69,21 +54,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BusinessNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CurrencyRef)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompanyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AcctNum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BillAddr)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Balance)
             </td>
             <td>
                     <a asp-action="Initiateoauth2" asp-controller="App">Authorize and Sync</a>
