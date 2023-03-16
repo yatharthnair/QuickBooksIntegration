@@ -1,0 +1,65 @@
+﻿@model IEnumerable<QuickbookIntegration1.Models.vendor>
+
+@{
+    ViewData["Title"] = "ViewVendor";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1>ViewVendor</h1>
+
+<p style="margin-right">
+    <a asp-action="AddVendor" asp-controller="Home">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                S.No.
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrimaryEmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DisplayName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OtherContactInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gstin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BusinessNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrimaryEmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DisplayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OtherContactInfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gstin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BusinessNumber)
+            </td>
+            <td>
+                @*<a href="/ControllerName/ActionName/id=@item.Id"><button>Sync</button></am>*@
+                    <a asp-action="Initiateoauth2" asp-controller="App">Authorize and Sync</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

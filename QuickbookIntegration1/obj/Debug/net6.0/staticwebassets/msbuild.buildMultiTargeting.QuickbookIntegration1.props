@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\QuickbookIntegration1.props" />
+</Project>

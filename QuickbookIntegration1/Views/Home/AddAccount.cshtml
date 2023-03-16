@@ -1,0 +1,25 @@
+﻿@*@model QuickbookIntegration1.Models.AccountList
+@{
+    ViewData["Title"] = "AddAccount";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+
+<div class="flex-row mt-4" id="div2">
+
+    <form method="post" asp-controller="Home" asp-action="AddAccount">
+        <div class="form-group">
+            <label for="Name">Name : </label>
+            <input type="text" class="form-control" id="Name" asp-for="Name">
+        </div>
+        <div class="form-group">
+            <label for="AcctNum">AcctNum : </label>
+            <input type="tel" class="form-control" id="AcctNum" asp-for="AcctNum">
+        </div>
+        <button class="btn btn-primary">Submit</button>
+    </form>
+</div>
+<script src="vendorform.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+*@
