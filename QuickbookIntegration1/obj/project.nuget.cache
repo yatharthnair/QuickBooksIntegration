@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PFKYXczq3FfG/lsIcCzch78w2XaRQCN+hVoalwDNTVptnekxt7ymwISxOYBrCclBST4yapsEA7vX2qnuZ/e6tw==",
+  "dgSpecHash": "ouMYg9VQjlvpemcBxo+lBqo6pD9dMdDENwcrzFoGKT36T819a5UDS1FmJVXCIUdJrtT/wXR21wVP9ZPYsWbRkQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main\\QuickbookIntegration1\\QuickbookIntegration1.csproj",
+  "projectFilePath": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\QuickbookIntegration1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lmgcs\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\lmgcs\\.nuget\\packages\\ippdotnetsdkforquickbooksapiv3\\14.6.3.4\\ippdotnetsdkforquickbooksapiv3.14.6.3.4.nupkg.sha512",

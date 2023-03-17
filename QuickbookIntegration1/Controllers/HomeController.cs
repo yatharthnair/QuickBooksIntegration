@@ -110,21 +110,21 @@ namespace IntegrationWithQuickbooks.Controllers
             _context.HttpContext.Session.Clear();
             return RedirectToAction("Index");
         }
-        /* public IActionResult AddAccount()
+         public IActionResult AddAccount()
          {
              return View();
          }
          [HttpPost]
-         public ActionResult AddAccount(accountlist model)
+         public ActionResult AddAccount(account model)
          {
-             using (var context = new FinalDBContext())
+             using (var context = new NewDBContext())
              {
-                 context.AccountLists.Add(model);
+                 context.Accounts.Add(model);
                  context.SaveChanges();
              }
              return View();
          }
-
+        /*
          public IActionResult AddPurchaseOrder()
          {
              return View();

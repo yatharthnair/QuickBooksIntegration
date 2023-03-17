@@ -11212,11 +11212,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main\\QuickbookIntegration1\\QuickbookIntegration1.csproj",
+      "projectUniqueName": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\QuickbookIntegration1.csproj",
       "projectName": "QuickbookIntegration1",
-      "projectPath": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main\\QuickbookIntegration1\\QuickbookIntegration1.csproj",
+      "projectPath": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\QuickbookIntegration1.csproj",
       "packagesPath": "C:\\Users\\lmgcs\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main\\QuickbookIntegration1\\obj\\",
+      "outputPath": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lmgcs\\AppData\\Roaming\\NuGet\\NuGet.Config",

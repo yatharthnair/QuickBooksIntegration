@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<QuickbookIntegration1.Models.vendor>
-
 @{
     ViewData["Title"] = "ViewVendor";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
@@ -7,9 +6,12 @@
 
 <h1>ViewVendor</h1>
 
-<p style="margin-right">
-    <a asp-action="AddVendor" asp-controller="Home">Create New</a>
-</p>
+<div style="width:100%;display:flex;justify-content:flex-end;padding-inline:7rem;padding-bottom:1.5rem;gap:2rem;">
+    <a asp-action="Initiateoauth2" asp-controller="App" class="btn btn-primary btn-sm">Login</a>
+@*</div>
+<div style="width:100%;display:flex;justify-content:flex-start;padding-inline:10rem;padding-bottom:1.5rem">*@
+    <a asp-action="AddVendor" asp-controller="Home" class="btn btn-primary btn-sm">Create New</a>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -55,11 +57,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.BusinessNumber)
             </td>
-            <td>
-                @*<a href="/ControllerName/ActionName/id=@item.Id"><button>Sync</button></am>*@
-                    <a asp-action="Initiateoauth2" asp-controller="App">Authorize and Sync</a>
-            </td>
         </tr>
 }
     </tbody>
 </table>
+<div style="width:100%;display:flex;justify-content:flex-end;padding-inline:7rem">
+    <a asp-action="QBvendor" asp-controller="App" class="btn btn-primary btn-sm">Sync All</a>
+</div>

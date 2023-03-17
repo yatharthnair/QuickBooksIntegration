@@ -16,7 +16,7 @@ namespace QuickbookIntegration1.Models
         {
         }
 
-        public virtual DbSet<Account> Accounts { get; set; } = null!;
+        public virtual DbSet<account> Accounts { get; set; } = null!;
         public virtual DbSet<Bill> Bills { get; set; } = null!;
         public virtual DbSet<Item> Items { get; set; } = null!;
         public virtual DbSet<Po> Pos { get; set; } = null!;
@@ -33,26 +33,30 @@ namespace QuickbookIntegration1.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Account>(entity =>
+            modelBuilder.Entity<account>(entity =>
             {
                 entity.HasKey(e => e.Name)
                     .HasName("PK_Account");
 
                 entity.ToTable("account");
 
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+                entity.Property(e => e.AcctNum)
+                    .HasMaxLength(50);
 
-                entity.Property(e => e.AccountSubType)
+                /*  entity.Property(e => e.AccountSubType)
+                      .HasMaxLength(50)
+                      .IsUnicode(false);*/
+
+                entity.Property(e => e.CurrentBalance);
+               /* entity.Property(e => e.AccountType)
                     .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .IsUnicode(false);*/
 
-                entity.Property(e => e.AccountType)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.SyncToken).ValueGeneratedOnAdd();
+                /*entity.Property(e => e.SyncToken).ValueGeneratedOnAdd();*/
             });
 
             modelBuilder.Entity<Bill>(entity =>

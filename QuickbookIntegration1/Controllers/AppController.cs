@@ -12,22 +12,33 @@ using Intuit.Ipp.Core.Configuration;
 using System.Security.Cryptography.X509Certificates;
 using Intuit.Ipp.DataService;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
+using IntegrationWithQuickbooks.Controllers;
 
 namespace QuickbookIntegration1.Controllers
 {
+
     public class AppController : Controller
 
     {
+        private readonly IHttpContextAccessor _context;
 
-        NewDBContext db = new NewDBContext();
+        public AppController(IHttpContextAccessor context)
+        {
+
+            _context = context;
+
+        }
+
+            NewDBContext db = new NewDBContext();
 
         public static string clientId = "ABmvAWjedrPeDs7xZZm7OmVtskZ7yxg4S3wvlKq2sbOzClLvf9";
         public static string clientSecret = "vVxCwSHNZXitBtNjYfDbcGZaDJxY33M6vJpdrZBm";
         public static string redirectUrl = "https://localhost:7092/callback";
         public static string environment = "sandbox";
 
-        public static OAuth2Client oauthClient = new OAuth2Client(clientId, clientSecret, redirectUrl, environment);
-
+        public static OAuth2Client oauthclient = new OAuth2Client(clientId, clientSecret, redirectUrl, environment);
+        
 
 
         public ActionResult Index()
@@ -38,16 +49,75 @@ namespace QuickbookIntegration1.Controllers
         }
 
         public IActionResult Initiateoauth2()
-        {
+        {   
             List<OidcScopes> scopes = new List<OidcScopes>();
             scopes.Add(OidcScopes.Accounting);
-            string authUrl = oauthClient.GetAuthorizationURL(scopes);
+            string authUrl = oauthclient.GetAuthorizationURL(scopes);
             return Redirect(authUrl);
 
         }
 
 
-        public ActionResult ApiCallService()
+        public IActionResult QBvendor()
+        {
+            /*string access_token = TempData["Access_token"] as string*/
+            /*string refresh_token = TempData["Refresh_token"] as string;
+            string realmId = TempData["RealmId"] as string;*/
+            string access_token = _context.HttpContext.Session.GetString("Access_token") as string;
+            string refresh_token = _context.HttpContext.Session.GetString("Refresh_token") as string;
+            string realmId = _context.HttpContext.Session.GetString("RealmId") as string;
+            var principal = User as ClaimsPrincipal;
+            OAuth2RequestValidator oauthValidator = new OAuth2RequestValidator(access_token);
+
+
+            // Create a ServiceContext with Auth tokens and realmId
+            ServiceContext serviceContext = new ServiceContext(realmId, IntuitServicesType.QBO, oauthValidator);
+            serviceContext.IppConfiguration.BaseUrl.Qbo = "https://sandbox-quickbooks.api.intuit.com/";
+            serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
+            var dataService = new DataService(serviceContext);
+            Vendor vendor = new Vendor();
+
+            //List <VendorList> vendorList = 
+            var data = db.Vendors.Where(c => c.QBid == null).ToList();
+            if (data != null)
+            {
+                foreach (var item in data)
+                {
+                    /*vendor.SyncToken = item.SyncToken.ToString();*/
+                    /*vendor.PrimaryEmailAddr.Address= item.PrimaryEmailAddress;*/
+                    vendor.DisplayName = item.DisplayName;
+                    vendor.GSTIN = item.Gstin;
+                    vendor.BusinessNumber = item.BusinessNumber.ToString();
+                    /*vendor.Mobile.FreeFormNumber = item.OtherContactInfo;*/
+                    /* vendor.CurrencyRef.Value = "USD";*/
+                    /*  vendor.CompanyName = item.CompanyName;*/
+                    /* vendor.AcctNum = item.AcctNum.ToString();
+                     vendor.Balance = item.Balance;*/
+                    Vendor addedObj = dataService.Add<Vendor>(vendor);
+                    var QbId = addedObj.Id;
+                    using (var context = new NewDBContext())
+                    {
+                        // Retrieve the vendor entity using its primary key value
+                        var vendorToUpdate = context.Vendors.Find(item.Id);
+
+                        if (vendorToUpdate != null)
+                        {
+                            // Update the QBID property of the retrieved entity with the new QBID value
+                            vendorToUpdate.QBid = QbId;
+
+                            // Save the changes back to the database
+                            context.SaveChanges();
+                           
+                        }
+                    }
+                }
+                return View();
+            }
+            return RedirectToAction("Home", "AddVendor");
+
+        }
+
+        public ActionResult AddAccount()
         {
             string access_token = TempData["Access_token"] as string;
             string refresh_token = TempData["Refresh_token"] as string;
@@ -62,41 +132,16 @@ namespace QuickbookIntegration1.Controllers
             serviceContext.IppConfiguration.BaseUrl.Qbo = "https://sandbox-quickbooks.api.intuit.com/";
             serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
             var dataService = new DataService(serviceContext);
-            Vendor vendor = new Vendor();
-
-            //List <VendorList> vendorList = 
-            var data = db.Vendors.Where(c => c.QBid == null).ToList();
+            Account account = new Account();
+            var data = db.Accounts.ToList();
 
             foreach (var item in data)
             {
-                /*vendor.SyncToken = item.SyncToken.ToString();*/
-                /*vendor.PrimaryEmailAddr.Address= item.PrimaryEmailAddress;*/
-                vendor.DisplayName = item.DisplayName;
-                vendor.GSTIN = item.Gstin;
-                vendor.BusinessNumber = item.BusinessNumber.ToString();
-                /*vendor.Mobile.FreeFormNumber = item.OtherContactInfo;*/
-                /* vendor.CurrencyRef.Value = "USD";*/
-                /*  vendor.CompanyName = item.CompanyName;*/
-                /* vendor.AcctNum = item.AcctNum.ToString();
-                 vendor.Balance = item.Balance;*/
-                Vendor addedObj = dataService.Add<Vendor>(vendor);
-                var QbId = addedObj.Id;
-                using (var context = new NewDBContext())
-                {
-                    // Retrieve the vendor entity using its primary key value
-                    var vendorToUpdate = context.Vendors.Find(item.Id);
-
-                    if (vendorToUpdate != null)
-                    {
-                        // Update the QBID property of the retrieved entity with the new QBID value
-                        vendorToUpdate.QBid = QbId;
-
-                        // Save the changes back to the database
-                        context.SaveChanges();
-                    }
-                }
-
-
+                account.Id = item.Id.ToString();
+                account.Name = item.Name;
+                account.AcctNum = item.AcctNum;
+                account.CurrentBalance = item.CurrentBalance;
+                dataService.Add<Account>(account);
             }
             return View();
         }
