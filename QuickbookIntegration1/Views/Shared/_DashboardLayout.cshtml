@@ -27,15 +27,18 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse d-flex collapsed-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AddVendor">DASHBOARD</a>
+                        <li class="nav-item d-flex">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="AddVendor">DASHBOARD</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Log Out</a>
+                        <li>
+                            <a class="nav-link text-dark d-flex justify-content-lg-end"asp-action="Initiateoauth2" asp-controller="App">Login</a>
                         </li>
                     </ul>
+                </div>
+                <div class="d-flex m-auto">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Log Out</a>
                 </div>
             </div>
         </nav>
@@ -48,8 +51,11 @@
                 <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="AddVendor">Add Vendor</a>
                 <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="AddAccount">Add Account</a>
                 <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="ViewVendor">View Vendor</a>
+                <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="viewaccount">View Account</a>
                 <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="AddPurchaseOrder">Add Purchase Order</a>
-                <a class="list-group-item list-group-item-action sideBar" href="#!">Generate Invoice</a>
+                <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="AddItem">Add Item</a>
+                <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="ViewItem">View Item</a>
+                
             </div>
         </div>
         <div class="dashbody">

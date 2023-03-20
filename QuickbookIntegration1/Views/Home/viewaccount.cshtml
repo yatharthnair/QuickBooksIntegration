@@ -1,0 +1,62 @@
+﻿@model IEnumerable<QuickbookIntegration1.Models.account>
+@{
+    ViewData["Title"] = "viewaccount";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1>ViewAccount</h1>
+
+<div style="width:100%;display:flex;justify-content:flex-end;padding-inline:7rem;padding-bottom:1.5rem;gap:2rem;">
+    @*</div>
+    <div style="width:100%;display:flex;justify-content:flex-start;padding-inline:10rem;padding-bottom:1.5rem">*@
+    <a asp-action="AddAccount" asp-controller="Home" class="btn btn-primary btn-sm">Create New</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AcctNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentBalance)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QBaccid)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.QBid)
+            </th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcctNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CurrentBalance)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QBaccid)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div style="width:100%;display:flex;justify-content:flex-end;padding-inline:7rem">
+    <a asp-action="QBAccount" asp-controller="App" class="btn btn-primary btn-sm">Submit</a>
+</div>

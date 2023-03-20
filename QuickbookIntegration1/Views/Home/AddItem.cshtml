@@ -1,0 +1,27 @@
+﻿@model QuickbookIntegration1.Models._Item
+@{
+    ViewData["Title"] = "AddItem";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1>Add Item</h1>
+
+<div class="flex-row mt-4" id="div2">
+
+    <form method="post" asp-controller="Home" asp-action="AddItem">
+        <div class="form-group">
+            <label for="Name">Name</label>
+            <input type="text" class="form-control" id="Name" asp-for="Name">
+        </div>
+  @*      <div class="form-group">
+            <label for="AcctNum">Account No.</label>
+            <input type="tel" class="form-control" id="AcctNum" asp-for="">
+        </div>
+        <div class="form-group">
+            <label for="AcctNum">Current Balance</label>
+            <input type="tel" class="form-control" id="AcctNum" asp-for="CurrentBalance">*@
+        @*</div>*@
+        <button class="btn btn-primary"> Submit</button>
+    </form>
+
+</div>

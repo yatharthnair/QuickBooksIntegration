@@ -124,21 +124,58 @@ namespace IntegrationWithQuickbooks.Controllers
              }
              return View();
          }
-        /*
-         public IActionResult AddPurchaseOrder()
+
+        [HttpGet]
+        public IActionResult ViewItem()
+        {
+            var data = new List<_Item>();
+            using (var context = new NewDBContext())
+            {
+                data = context.Items.ToList();
+            }
+
+            return View(data);
+        }
+        public ActionResult AddItem() 
+        {
+            return View(); 
+        }
+        [HttpPost]
+        public ActionResult AddItem(_Item model)
+        {
+            using (var context = new NewDBContext())
+            {
+                context.Items.Add(model);
+                context.SaveChanges();
+            }
+            return View();
+        }
+        public IActionResult AddPurchaseOrder()
          {
              return View();
          }
-         [HttpPost]
-          public ActionResult AddPurchaseOrder(PurchaseOrder model)
-         {
-             using (var context = new FinalDBContext())
-             {
-                 context.PurchaseOrders.Add(model);
-                 context.SaveChanges();
-             }
-             return View();
-         }*/
+        [HttpGet]
+        public IActionResult viewaccount()
+        {
+            var data = new List<account>();
+            using (var context = new NewDBContext())
+            {
+                data = context.Accounts.ToList();
+            }
+
+            return View(data);
+        }
+
+        /*[HttpPost]
+         public ActionResult AddPurchaseOrder(PurchaseOrder model)
+        {
+            using (var context = new FinalDBContext())
+            {
+                context.PurchaseOrders.Add(model);
+                context.SaveChanges();
+            }
+            return View();
+        }*/
 
 
     }

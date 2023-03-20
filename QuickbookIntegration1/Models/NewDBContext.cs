@@ -18,7 +18,7 @@ namespace QuickbookIntegration1.Models
 
         public virtual DbSet<account> Accounts { get; set; } = null!;
         public virtual DbSet<Bill> Bills { get; set; } = null!;
-        public virtual DbSet<Item> Items { get; set; } = null!;
+        public virtual DbSet<_Item> Items { get; set; } = null!;
         public virtual DbSet<Po> Pos { get; set; } = null!;
         public virtual DbSet<vendor> Vendors { get; set; } = null!;
 
@@ -35,7 +35,7 @@ namespace QuickbookIntegration1.Models
         {
             modelBuilder.Entity<account>(entity =>
             {
-                entity.HasKey(e => e.Name)
+                entity.HasKey(e => e.Id)
                     .HasName("PK_Account");
 
                 entity.ToTable("account");
@@ -52,9 +52,10 @@ namespace QuickbookIntegration1.Models
                       .IsUnicode(false);*/
 
                 entity.Property(e => e.CurrentBalance);
-               /* entity.Property(e => e.AccountType)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);*/
+                entity.Property(e => e.QBaccid).HasDefaultValue(null);
+                /* entity.Property(e => e.AccountType)
+                     .HasMaxLength(50)
+                     .IsUnicode(false);*/
 
                 /*entity.Property(e => e.SyncToken).ValueGeneratedOnAdd();*/
             });
@@ -83,19 +84,17 @@ namespace QuickbookIntegration1.Models
                     .HasConstraintName("FK_Bill_Vendor");
             });
 
-            modelBuilder.Entity<Item>(entity =>
+            modelBuilder.Entity<_Item>(entity =>
             {
                 entity.ToTable("item");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.InvStartDate).HasColumnType("date");
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SyncToken).ValueGeneratedOnAdd();
+                entity.Property(e => e.QBitem).HasDefaultValue(null);
             });
 
             modelBuilder.Entity<Po>(entity =>

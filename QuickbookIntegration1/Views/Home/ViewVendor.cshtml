@@ -7,7 +7,6 @@
 <h1>ViewVendor</h1>
 
 <div style="width:100%;display:flex;justify-content:flex-end;padding-inline:7rem;padding-bottom:1.5rem;gap:2rem;">
-    <a asp-action="Initiateoauth2" asp-controller="App" class="btn btn-primary btn-sm">Login</a>
 @*</div>
 <div style="width:100%;display:flex;justify-content:flex-start;padding-inline:10rem;padding-bottom:1.5rem">*@
     <a asp-action="AddVendor" asp-controller="Home" class="btn btn-primary btn-sm">Create New</a>
@@ -33,7 +32,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.BusinessNumber)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.QBid)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -56,6 +57,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.BusinessNumber)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.QBid)
             </td>
         </tr>
 }
