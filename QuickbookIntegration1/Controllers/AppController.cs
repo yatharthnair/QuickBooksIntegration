@@ -139,7 +139,7 @@ namespace QuickbookIntegration1.Controllers
                 /*account.Id = item.Id.ToString();*/
                 account.Name = item.Name;
                 account.AccountType = AccountTypeEnum.Income;
-                account.AccountSubType = AccountSubTypeEnum.AccountsReceivable.ToString();
+                account.AccountSubType = AccountSubTypeEnum.SalesOfProductIncome.ToString();
                 account.AcctNum = item.AcctNum;
                 account.CurrentBalance = item.CurrentBalance;
                 Account addedobj = dataService.Add<Account>(account);
@@ -156,7 +156,7 @@ namespace QuickbookIntegration1.Controllers
                         acct.QBaccid = QBid;
                         context.Entry(acct).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                         // Save the changes back to the database
-                        //context.SaveChanges();
+                        context.SaveChanges();
                     }
                 }
 
@@ -189,7 +189,7 @@ namespace QuickbookIntegration1.Controllers
                 i.Active = true;
                 var Accdata = db.Accounts.Where(x => x.Id == 3).FirstOrDefault();
                 var QBaccid1 = Accdata.QBaccid;
-                var Accdata2 = db.Accounts.Where(x => x.Id == 4).FirstOrDefault();
+                var Accdata2 = db.Accounts.Where(x => x.Id == 5).FirstOrDefault();
                 var QBaccid2 = Accdata2.QBaccid;
                 i.AssetAccountRef = new ReferenceType() { Value = QBaccid1 };
                 i.IncomeAccountRef = new ReferenceType() { Value = QBaccid2 };
@@ -205,7 +205,7 @@ namespace QuickbookIntegration1.Controllers
                         item1.QBitem = QBid;
                         context.Entry(item1).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                         // Save the changes back to the database
-                        //context.SaveChanges();
+                        context.SaveChanges();
                     }
                 }
             }
@@ -227,27 +227,34 @@ namespace QuickbookIntegration1.Controllers
             var dataService = new DataService(serviceContext);
             PurchaseOrder purchaseOrder = new PurchaseOrder();
             var data = db.Pos.ToList();
-            var Accdata = db.Accounts.Where(x => x.Id == 1).FirstOrDefault();
+            var Accdata = db.Accounts.Where(x => x.Id == 5).FirstOrDefault();
             var QBaccid = Accdata.QBaccid;
-            var vdata = db.Vendors.Where(x => x.Id == 2).FirstOrDefault();
+            var vdata = db.Vendors.Where(x => x.Id == 1).FirstOrDefault();
             var QBvid = vdata.QBid;
-            purchaseOrder.APAccountRef = new ReferenceType()
-            { 
-                name= "Accounts Payable (A/P)",
-                Value = QBaccid
-            };
+            //purchaseOrder.APAccountRef = new ReferenceType()
+            //{ 
+            //    name="Abid",
+            //    Value = "187"
+            //};
             purchaseOrder.VendorRef = new ReferenceType()
             {
+                name= "Books by Kanishka",
                 Value = QBvid
             };
             Line[] line = new Line[1];
             line[0] = new Line();
             line[0].DetailType = LineDetailTypeEnum.ItemBasedExpenseLineDetail;
+            
             ItemBasedExpenseLineDetail itemBasedExpense = new ItemBasedExpenseLineDetail();
+            itemBasedExpense.ItemAccountRef = new ReferenceType()
+            {
+                name = "Abid",
+                Value = "187"
+            };
             itemBasedExpense.ItemRef = new ReferenceType()
             {
-                name = "Book Shelf",
-                Value = "24"
+                name= "Laptops",
+                Value = "27"
             };
             line[0].AnyIntuitObject = itemBasedExpense;
             line[0].DetailTypeSpecified = true;
