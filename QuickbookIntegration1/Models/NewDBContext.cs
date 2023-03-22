@@ -101,7 +101,7 @@ namespace QuickbookIntegration1.Models
             {
                 entity.ToTable("po");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.ApaccountRef).HasColumnName("APAccountRef");
 
@@ -109,10 +109,13 @@ namespace QuickbookIntegration1.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e=>e.QBid).HasDefaultValue(null);
+
                 entity.Property(e => e.Line0N)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("Line [0..n]");
+                entity.Property(e => e.VendorRef);
 
                 entity.HasOne(d => d.VendorRefNavigation)
                     .WithMany(p => p.Pos)

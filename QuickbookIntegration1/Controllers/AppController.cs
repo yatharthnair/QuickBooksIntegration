@@ -1,19 +1,16 @@
 ﻿using Intuit.Ipp.OAuth2PlatformClient;
 using System.Security.Claims;
 using Intuit.Ipp.Core;
-using Intuit.Ipp.QueryFilter;
+
 using Intuit.Ipp.Security;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using QuickbookIntegration1.Models;
 using Intuit.Ipp.Data;
-using Intuit.Ipp.Core.Configuration;
-using System.Security.Cryptography.X509Certificates;
+
 using Intuit.Ipp.DataService;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
-using IntegrationWithQuickbooks.Controllers;
+
 
 namespace QuickbookIntegration1.Controllers
 {
@@ -138,17 +135,17 @@ namespace QuickbookIntegration1.Controllers
             {
                 /*account.Id = item.Id.ToString();*/
                 account.Name = item.Name;
-                account.AccountType = AccountTypeEnum.Income;
-                account.AccountSubType = AccountSubTypeEnum.SalesOfProductIncome.ToString();
+                account.AccountType = AccountTypeEnum.AccountsPayable;
+                account.AccountSubType = AccountSubTypeEnum.AccountsPayable.ToString();
                 account.AcctNum = item.AcctNum;
-                account.CurrentBalance = item.CurrentBalance;
+                /* account.CurrentBalance = item.CurrentBalance;*/
                 Account addedobj = dataService.Add<Account>(account);
                 var QBid = addedobj.Id;
                 using (var context = new NewDBContext())
                 {
                     // Retrieve the vendor entity using its primary key value
                     //var Accountupdate = context.Accounts.Find(item.Id.ToString());
-                    var acct=context.Accounts.Where(x => x.Id == item.Id).FirstOrDefault();
+                    var acct = context.Accounts.Where(x => x.Id == item.Id).FirstOrDefault();
 
                     if (acct != null)
                     {
@@ -187,12 +184,12 @@ namespace QuickbookIntegration1.Controllers
                 i.QtyOnHand = 10;
                 i.TypeSpecified = true;
                 i.Active = true;
-                var Accdata = db.Accounts.Where(x => x.Id == 3).FirstOrDefault();
-                var QBaccid1 = Accdata.QBaccid;
-                var Accdata2 = db.Accounts.Where(x => x.Id == 5).FirstOrDefault();
-                var QBaccid2 = Accdata2.QBaccid;
-                i.AssetAccountRef = new ReferenceType() { Value = QBaccid1 };
-                i.IncomeAccountRef = new ReferenceType() { Value = QBaccid2 };
+                /* var Accdata = db.Accounts.Where(x => x.Id == 3).FirstOrDefault();
+                 var QBaccid1 = Accdata.QBaccid;
+                 var Accdata2 = db.Accounts.Where(x => x.Id == 5).FirstOrDefault();
+                 var QBaccid2 = Accdata2.QBaccid;*/
+                i.ExpenseAccountRef = new ReferenceType() { Value = "188" };
+                i.IncomeAccountRef = new ReferenceType() { Value = "185" };
                 Intuit.Ipp.Data.Item addeditem = dataService.Add<Intuit.Ipp.Data.Item>(i);
                 var QBid = addeditem.Id;
                 using (var context = new NewDBContext())
@@ -226,100 +223,127 @@ namespace QuickbookIntegration1.Controllers
             serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
             var dataService = new DataService(serviceContext);
             PurchaseOrder purchaseOrder = new PurchaseOrder();
-            var data = db.Pos.ToList();
-            var Accdata = db.Accounts.Where(x => x.Id == 5).FirstOrDefault();
-            var QBaccid = Accdata.QBaccid;
-            var vdata = db.Vendors.Where(x => x.Id == 1).FirstOrDefault();
-            var QBvid = vdata.QBid;
-            //purchaseOrder.APAccountRef = new ReferenceType()
-            //{ 
-            //    name="Abid",
-            //    Value = "187"
-            //};
-            purchaseOrder.VendorRef = new ReferenceType()
+            var data = db.Pos.Where(c => c.QBid == null).ToList();
+            foreach (var item in data)
             {
-                name= "Books by Kanishka",
-                Value = QBvid
+                purchaseOrder.VendorRef = new ReferenceType()
+                {
+                    Value = "67"
+                };
+                Line[] line = new Line[1];
+                line[0] = new Line();
+                line[0].DetailType = LineDetailTypeEnum.ItemBasedExpenseLineDetail;
+                ItemBasedExpenseLineDetail itemBasedExpense = new ItemBasedExpenseLineDetail();
+                itemBasedExpense.ItemAccountRef = new ReferenceType()
+                {
+                    Value = "188"
+                };
+                itemBasedExpense.ItemRef = new ReferenceType()
+                {
+                    /*  name= "Laptops",*/
+                    Value = "28"
+                };
+                line[0].AnyIntuitObject = itemBasedExpense;
+                line[0].DetailTypeSpecified = true;
+                line[0].Amount = 3000;
+                line[0].AmountSpecified = true;
+                purchaseOrder.Line = line;
+                purchaseOrder.TxnDate = DateTime.Now;
+                PurchaseOrder addedobj = dataService.Add<PurchaseOrder>(purchaseOrder);
+                var QBid = addedobj.Id;
+                using (var context = new NewDBContext())
+                {
+                    var item1 = context.Pos.Where(x => x.Id == item.Id).FirstOrDefault();
+
+                    if (item1 != null)
+                    {
+                        // Update the QBID property of the retrieved entity with the new QBID value
+                        item1.QBid = QBid;
+                        context.Entry(item1).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                        // Save the changes back to the database
+                        context.SaveChanges();
+                    }
+                }
+            }
+            return View();
+        }
+
+
+        public ActionResult GenBill()
+        {
+            string access_token = _context.HttpContext.Session.GetString("Access_token") as string;
+            string refresh_token = _context.HttpContext.Session.GetString("Refresh_token") as string;
+            string realmId = _context.HttpContext.Session.GetString("RealmId") as string;
+            var principal = User as ClaimsPrincipal;
+            OAuth2RequestValidator oauthValidator = new OAuth2RequestValidator(access_token);
+
+
+            // Create a ServiceContext with Auth tokens and realmId
+            ServiceContext serviceContext = new ServiceContext(realmId, IntuitServicesType.QBO, oauthValidator);
+            serviceContext.IppConfiguration.BaseUrl.Qbo = "https://sandbox-quickbooks.api.intuit.com/";
+            serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
+            var dataService = new DataService(serviceContext);
+            Intuit.Ipp.Data.Bill bill = new Intuit.Ipp.Data.Bill();
+            bill.VendorRef = new ReferenceType() { name="Gaming Cafe",Value = "67" };
+            bill.APAccountRef = new ReferenceType()
+            {
+                name = "Test AP",
+                Value = "189"
             };
             Line[] line = new Line[1];
             line[0] = new Line();
             line[0].DetailType = LineDetailTypeEnum.ItemBasedExpenseLineDetail;
-            
-            ItemBasedExpenseLineDetail itemBasedExpense = new ItemBasedExpenseLineDetail();
-            itemBasedExpense.ItemAccountRef = new ReferenceType()
-            {
-                name = "Abid",
-                Value = "187"
-            };
-            itemBasedExpense.ItemRef = new ReferenceType()
-            {
-                name= "Laptops",
-                Value = "27"
-            };
-            line[0].AnyIntuitObject = itemBasedExpense;
             line[0].DetailTypeSpecified = true;
-            line[0].Amount = 10;
+            ItemBasedExpenseLineDetail itemBasedExpense = new ItemBasedExpenseLineDetail();
+            itemBasedExpense.ItemRef = new ReferenceType() { Value= "28" };
+            line[0].Amount = 3000;
             line[0].AmountSpecified = true;
-            purchaseOrder.Line = line;
-            purchaseOrder.TxnDate = DateTime.Now;
-            dataService.Add<PurchaseOrder>(purchaseOrder);
+            line[0].AnyIntuitObject = itemBasedExpense;
+           
+            bill.Line = line;
+
+            Intuit.Ipp.Data.Bill addedobj = dataService.Add<Intuit.Ipp.Data.Bill>(bill);
+            
             return View();
         }
+       /* public ActionResult GenBill()
+        {
+            string access_token = _context.HttpContext.Session.GetString("Access_token") as string;
+            string refresh_token = _context.HttpContext.Session.GetString("Refresh_token") as string;
+            string realmId = _context.HttpContext.Session.GetString("RealmId") as string;
+            var principal = User as ClaimsPrincipal;
+            OAuth2RequestValidator oauthValidator = new OAuth2RequestValidator(access_token);
+
+
+            // Create a ServiceContext with Auth tokens and realmId
+            ServiceContext serviceContext = new ServiceContext(realmId, IntuitServicesType.QBO, oauthValidator);
+            serviceContext.IppConfiguration.BaseUrl.Qbo = "https://sandbox-quickbooks.api.intuit.com/";
+            serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
+            var dataService = new DataService(serviceContext);
+            Intuit.Ipp.Data.Bill bill = new Intuit.Ipp.Data.Bill();
+            bill.VendorRef = new ReferenceType() { name = "Gaming Cafe", Value = "67" };
+            Line[] line = new Line[1];
+            line[0] = new Line();
+            line[0].DetailType = LineDetailTypeEnum.PurchaseOrderItemLineDetail;
+            PurchaseOrderItemLineDetail purchaseOrderItemLine = new PurchaseOrderItemLineDetail();
+            line[0].AnyIntuitObject = purchaseOrderItemLine;
+            line[0].DetailTypeSpecified = true;
+            line[0].Description = "Logitech";
+            line[0].Amount = 3000;
+            line[0].AmountSpecified = true;
+
+            bill.Line = line;
+
+            LinkedTxn[] linkedTxns = new LinkedTxn[1];
+            linkedTxns[0] = new LinkedTxn();
+            *//*linkedTxns[0].TxnId = "150";*//*
+            linkedTxns[0].TxnLineId = "150";
+            bill.LinkedTxn = linkedTxns;
+
+            Intuit.Ipp.Data.Bill addedobj = dataService.Add<Intuit.Ipp.Data.Bill>(bill);
+
+            return View();
+        }*/
     }
 }
-           /* var vendor = dataService.FindById(new Vendor(),vendorId) as Vendor;
-
-            if (vendor != null)
-            {
-                Console.WriteLine($"Vendor Name: {vendor.DisplayName}");
-                Console.WriteLine($"Vendor Email: {vendor.PrimaryEmailAddr.Address}");
-                Console.ReadLine();
-            }
-            else
-            {
-                Console.WriteLine($"Vendor with ID {vendorId} not found.");
-                Console.ReadLine();
-            }
-            return View();  
-        }
-         */
-
-            /*  if (HttpContext.Session.Get("realmId") != null)
-              {
-                  string realmId = "realmId";
-                  *//*try
-                  {*//*
-                  var principal = User as ClaimsPrincipal;
-                  OAuth2RequestValidator oauthValidator = new OAuth2RequestValidator("access_token");
-
-
-                  // Create a ServiceContext with Auth tokens and realmId
-                  ServiceContext serviceContext = new ServiceContext(realmId, IntuitServicesType.QBO, oauthValidator);
-                  serviceContext.IppConfiguration.BaseUrl.Qbo = "https://sandbox-quickbooks.api.intuit.com/";
-                  serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
-
-              }*/
-
-
-                    /*// Create a QuickBooks QueryService using ServiceContext
-                    QueryService<VendorList> querySvc = new QueryService<VendorList>(serviceContext);
-                    VendorList vendorlist = querySvc.ExecuteIdsQuery().
-                        querySvc.ExecuteIdsQuery("SELECT * FROM VendorList").FirstOrDefault();
-
-                    string output = "Suffix: " + vendorList.Suffix + "DisplayName: " + vendorList.DisplayName + " PrimaryEmailAddress: " + vendorList.PrimaryEmailAddress + "PanID " + vendorList.PanId + " GSTNo" + vendorList.Gstno + " Contact " + vendorList.Contact + "VendorBusiness" + vendorList.VendorBusiness;
-                    return View("ApiCallService", (object)("QBO API call Successful!! Response: " + output));
-                }
-                catch (Exception ex)
-                {
-                    return View("ApiCallService", (object)("QBO API call Failed!" + " Error message: " + ex.Message));
-                }
-            }
-            else
-                return View("ApiCallService", (object)"QBO API call Failed!");
-*/
-/*        public ActionResult Tokens()
-        {
-            return View("Tokens");
-        }
-    }
-}*/
+  

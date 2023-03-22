@@ -15,12 +15,10 @@ namespace QuickbookIntegration1.Models
       /*  public int SyncToken { get; set; }*/
         public string DisplayName { get; set; } = null!;
         public string PrimaryEmailAddress { get; set; } = null!;
-        public string OtherContactInfo { get; set; }
+        public string? OtherContactInfo { get; set; }
         public string Gstin { get; set; } = null!;
         public int BusinessNumber { get; set; }
-
         public string? QBid {get; set; }
-
         public virtual ICollection<Bill> Bills { get; set; }
         public virtual ICollection<Po> Pos { get; set; }
     }

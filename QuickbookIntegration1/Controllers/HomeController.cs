@@ -23,7 +23,7 @@ namespace IntegrationWithQuickbooks.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IHttpContextAccessor _context;
 
-
+        NewDBContext db = new NewDBContext();
         public HomeController(ILogger<HomeController> logger, IHttpContextAccessor context)
         {
             _logger = logger;
@@ -152,8 +152,34 @@ namespace IntegrationWithQuickbooks.Controllers
         }
         public IActionResult AddPurchaseOrder()
          {
-             return View();
+            /*var vendornames = db.Vendors.ToList();
+            ViewBag.Vendornames = vendornames;*/
+            return View();
          }
+        [HttpPost]
+        public ActionResult AddPurchaseOrder(Po model)
+        {
+            /*AddPurchaseOrder();*/
+  /*        var vendornames = db.Vendors.ToList();
+            ViewBag.Vendornames = vendornames;*/
+            using (var context = new NewDBContext())
+            {
+                context.Pos.Add(model);
+                context.SaveChanges();
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult ViewPurchaseOrder()
+        {
+            var data = new List<Po>();
+            using (var context = new NewDBContext())
+            {
+                data = context.Pos.ToList();
+            }
+
+            return View(data);
+        }
         [HttpGet]
         public IActionResult viewaccount()
         {

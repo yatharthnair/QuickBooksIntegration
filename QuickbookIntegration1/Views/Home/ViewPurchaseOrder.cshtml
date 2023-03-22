@@ -1,0 +1,53 @@
+﻿@model IEnumerable<QuickbookIntegration1.Models.Po>
+@{
+    ViewData["Title"] = "ViewPurchaseOrder";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1>ViewItem</h1>
+
+<div style="width:100%;display:flex;justify-content:flex-end;padding-inline:7rem;padding-bottom:1.5rem;gap:2rem;">
+    @*</div>
+    <div style="width:100%;display:flex;justify-content:flex-start;padding-inline:10rem;padding-bottom:1.5rem">*@
+    <a asp-action="AddPurchaseOrder" asp-controller="Home" class="btn btn-primary btn-sm">Create New</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApaccountRef)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Line0N)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QBid)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApaccountRef)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Line0N)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QBid)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div style="width:100%;display:flex;justify-content:flex-end;padding-inline:7rem">
+    <a asp-action="QBpurchase" asp-controller="App" class="btn btn-primary btn-sm">Submit</a>
+</div>

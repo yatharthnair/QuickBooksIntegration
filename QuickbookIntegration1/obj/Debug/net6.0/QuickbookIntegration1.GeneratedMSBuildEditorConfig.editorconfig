@@ -16,8 +16,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\lmgcs\Downloads\QuickBooksIntegration-backup2\QuickBooksIntegration-main - Copy\QuickbookIntegration1
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/lmgcs/Downloads/QuickBooksIntegration-backup2/QuickBooksIntegration-main - Copy/QuickbookIntegration1/Views/App/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwXEluZGV4LmNzaHRtbA==
+[C:/Users/lmgcs/Downloads/QuickBooksIntegration-backup2/QuickBooksIntegration-main - Copy/QuickbookIntegration1/Views/App/Addaccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwXEFkZGFjY291bnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lmgcs/Downloads/QuickBooksIntegration-backup2/QuickBooksIntegration-main - Copy/QuickbookIntegration1/Views/App/GenBill.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwXEdlbkJpbGwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lmgcs/Downloads/QuickBooksIntegration-backup2/QuickBooksIntegration-main - Copy/QuickbookIntegration1/Views/App/QBvendor.cshtml]
@@ -50,6 +54,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/lmgcs/Downloads/QuickBooksIntegration-backup2/QuickBooksIntegration-main - Copy/QuickbookIntegration1/Views/Home/ViewItem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3SXRlbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lmgcs/Downloads/QuickBooksIntegration-backup2/QuickBooksIntegration-main - Copy/QuickbookIntegration1/Views/Home/ViewPurchaseOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3UHVyY2hhc2VPcmRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lmgcs/Downloads/QuickBooksIntegration-backup2/QuickBooksIntegration-main - Copy/QuickbookIntegration1/Views/Home/ViewVendor.cshtml]

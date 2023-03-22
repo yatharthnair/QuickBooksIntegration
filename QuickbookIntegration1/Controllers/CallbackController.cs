@@ -31,7 +31,7 @@ namespace QuickbookIntegration1.Controllers
             _context.HttpContext.Session.SetString("Access_token", list[0]);
             _context.HttpContext.Session.SetString("Refresh_token", list[1]);
             _context.HttpContext.Session.SetString("RealmId", list[2]);
-            return RedirectToAction("ViewVendor","Home");
+            return RedirectToAction("ViewPurchaseOrder","Home");
         }
         private async Task<List<string>> GetAuthTokensAsync(string code, string realmId)
         {
