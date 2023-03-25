@@ -33,6 +33,14 @@
       "PackagePath": "staticwebassets\\css\\login.css"
     },
     {
+      "Id": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\wwwroot\\css\\material-dashboard.css",
+      "PackagePath": "staticwebassets\\css\\material-dashboard.css"
+    },
+    {
+      "Id": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\wwwroot\\css\\material-dashboard.min.css",
+      "PackagePath": "staticwebassets\\css\\material-dashboard.min.css"
+    },
+    {
       "Id": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\wwwroot\\css\\owl.carousel.min.css",
       "PackagePath": "staticwebassets\\css\\owl.carousel.min.css"
     },
@@ -131,6 +139,10 @@
     {
       "Id": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\wwwroot\\images\\bg_1.jpg",
       "PackagePath": "staticwebassets\\images\\bg_1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\wwwroot\\images\\google.svg",
+      "PackagePath": "staticwebassets\\images\\google.svg"
     },
     {
       "Id": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\wwwroot\\images\\googleImg.png",

@@ -81,7 +81,8 @@ namespace QuickbookIntegration1.Controllers
                 foreach (var item in data)
                 {
                     /*vendor.SyncToken = item.SyncToken.ToString();*/
-                    /*vendor.PrimaryEmailAddr.Address= item.PrimaryEmailAddress;*/
+                    vendor.PrimaryEmailAddr = new EmailAddress();
+                    vendor.PrimaryEmailAddr.Address = item.PrimaryEmailAddress;
                     vendor.DisplayName = item.DisplayName;
                     vendor.GSTIN = item.Gstin;
                     vendor.BusinessNumber = item.BusinessNumber.ToString();
@@ -135,10 +136,10 @@ namespace QuickbookIntegration1.Controllers
             {
                 /*account.Id = item.Id.ToString();*/
                 account.Name = item.Name;
-                account.AccountType = AccountTypeEnum.AccountsPayable;
-                account.AccountSubType = AccountSubTypeEnum.AccountsPayable.ToString();
+                account.AccountType = AccountTypeEnum.Income;
+                account.AccountSubType = AccountSubTypeEnum.PersonalIncome.ToString();
                 account.AcctNum = item.AcctNum;
-                /* account.CurrentBalance = item.CurrentBalance;*/
+                account.CurrentBalance = (decimal)item.CurrentBalance;
                 Account addedobj = dataService.Add<Account>(account);
                 var QBid = addedobj.Id;
                 using (var context = new NewDBContext())
@@ -181,15 +182,17 @@ namespace QuickbookIntegration1.Controllers
                 i.Description = "This is a test item";
                 i.Type = ItemTypeEnum.NonInventory;
                 i.InvStartDate = DateTime.Now;
-                i.QtyOnHand = 10;
+    /*            i.QtyOnHand = 10;*/
                 i.TypeSpecified = true;
                 i.Active = true;
                 /* var Accdata = db.Accounts.Where(x => x.Id == 3).FirstOrDefault();
                  var QBaccid1 = Accdata.QBaccid;
                  var Accdata2 = db.Accounts.Where(x => x.Id == 5).FirstOrDefault();
                  var QBaccid2 = Accdata2.QBaccid;*/
-                i.ExpenseAccountRef = new ReferenceType() { Value = "188" };
-                i.IncomeAccountRef = new ReferenceType() { Value = "185" };
+                i.ExpenseAccountRef = new ReferenceType() { Value = item.expenseaccref.ToString() };
+                i.IncomeAccountRef = new ReferenceType() { Value = "232" };
+                i.Sku=item.SKU.ToString();
+                i.PurchaseCost = (decimal)item.cost;
                 Intuit.Ipp.Data.Item addeditem = dataService.Add<Intuit.Ipp.Data.Item>(i);
                 var QBid = addeditem.Id;
                 using (var context = new NewDBContext())
@@ -223,12 +226,13 @@ namespace QuickbookIntegration1.Controllers
             serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
             var dataService = new DataService(serviceContext);
             PurchaseOrder purchaseOrder = new PurchaseOrder();
+            var itemdata = db.Items.ToList();
             var data = db.Pos.Where(c => c.QBid == null).ToList();
             foreach (var item in data)
             {
                 purchaseOrder.VendorRef = new ReferenceType()
                 {
-                    Value = "67"
+                    Value = item.VendorRef.ToString()
                 };
                 Line[] line = new Line[1];
                 line[0] = new Line();
@@ -236,19 +240,23 @@ namespace QuickbookIntegration1.Controllers
                 ItemBasedExpenseLineDetail itemBasedExpense = new ItemBasedExpenseLineDetail();
                 itemBasedExpense.ItemAccountRef = new ReferenceType()
                 {
-                    Value = "188"
+                    Value = item.itemaccref.ToString()
                 };
                 itemBasedExpense.ItemRef = new ReferenceType()
                 {
                     /*  name= "Laptops",*/
-                    Value = "28"
+                    Value = item.itemid.ToString() 
                 };
                 line[0].AnyIntuitObject = itemBasedExpense;
                 line[0].DetailTypeSpecified = true;
-                line[0].Amount = 3000;
+                var amount = item.qty * item.rate;
+                line[0].Amount = amount;
                 line[0].AmountSpecified = true;
                 purchaseOrder.Line = line;
                 purchaseOrder.TxnDate = DateTime.Now;
+                purchaseOrder.TxnDateSpecified = true;
+                purchaseOrder.DueDate = item.due;
+                purchaseOrder.DueDateSpecified = true;
                 PurchaseOrder addedobj = dataService.Add<PurchaseOrder>(purchaseOrder);
                 var QBid = addedobj.Id;
                 using (var context = new NewDBContext())
@@ -256,7 +264,7 @@ namespace QuickbookIntegration1.Controllers
                     var item1 = context.Pos.Where(x => x.Id == item.Id).FirstOrDefault();
 
                     if (item1 != null)
-                    {
+                    {  
                         // Update the QBID property of the retrieved entity with the new QBID value
                         item1.QBid = QBid;
                         context.Entry(item1).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
@@ -284,26 +292,43 @@ namespace QuickbookIntegration1.Controllers
             serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
             var dataService = new DataService(serviceContext);
             Intuit.Ipp.Data.Bill bill = new Intuit.Ipp.Data.Bill();
-            bill.VendorRef = new ReferenceType() { name="Gaming Cafe",Value = "67" };
-            bill.APAccountRef = new ReferenceType()
+            var data = db.Bills.Where(c => c.QBbillid == null).ToList();
+            foreach (var item in data)
             {
-                name = "Test AP",
-                Value = "189"
-            };
-            Line[] line = new Line[1];
-            line[0] = new Line();
-            line[0].DetailType = LineDetailTypeEnum.ItemBasedExpenseLineDetail;
-            line[0].DetailTypeSpecified = true;
-            ItemBasedExpenseLineDetail itemBasedExpense = new ItemBasedExpenseLineDetail();
-            itemBasedExpense.ItemRef = new ReferenceType() { Value= "28" };
-            line[0].Amount = 3000;
-            line[0].AmountSpecified = true;
-            line[0].AnyIntuitObject = itemBasedExpense;
-           
-            bill.Line = line;
+                bill.VendorRef = new ReferenceType() { Value = item.VendorRef.ToString() };
+                bill.APAccountRef = new ReferenceType()
+                {
+                    Value = "230"
+                };
+                Line[] line = new Line[1];
+                line[0] = new Line();
+                line[0].DetailType = LineDetailTypeEnum.ItemBasedExpenseLineDetail;
+                line[0].DetailTypeSpecified = true;
+                ItemBasedExpenseLineDetail itemBasedExpense = new ItemBasedExpenseLineDetail();
+                itemBasedExpense.ItemRef = new ReferenceType() { Value = item.itemref.ToString() };
+                line[0].Amount = item.Qty * item.rate;
+                line[0].AmountSpecified = true;
+                line[0].AnyIntuitObject = itemBasedExpense;
 
-            Intuit.Ipp.Data.Bill addedobj = dataService.Add<Intuit.Ipp.Data.Bill>(bill);
-            
+                bill.Line = line;
+
+                Intuit.Ipp.Data.Bill addedobj = dataService.Add<Intuit.Ipp.Data.Bill>(bill);
+                var QBid = addedobj.Id;
+                using (var context = new NewDBContext())
+                {
+                    var item1 = context.Bills.Where(x => x.Id == item.Id ).FirstOrDefault();
+
+                    if (item1 != null)
+                    {
+                        // Update the QBID property of the retrieved entity with the new QBID value
+                        item1.QBbillid = QBid.ToString();
+                        context.Entry(item1).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                        // Save the changes back to the database
+                        context.SaveChanges();
+                    }
+                }
+            }
+
             return View();
         }
        /* public ActionResult GenBill()

@@ -60,7 +60,7 @@ namespace IntegrationWithQuickbooks.Controllers
             var email = authenticateResult.Principal.FindFirst(ClaimTypes.Email)?.Value;
             _context.HttpContext.Session.SetString("email", email);
             /*HttpContext.Session.SetString("userEmail", email);*/
-            return RedirectToAction("AddVendor", "Home");
+            return RedirectToAction("ViewVendor", "Home");
         }
 
         public IActionResult dashboard()
@@ -122,7 +122,7 @@ namespace IntegrationWithQuickbooks.Controllers
                  context.Accounts.Add(model);
                  context.SaveChanges();
              }
-             return View();
+            return RedirectToAction("viewaccount");
          }
 
         [HttpGet]
@@ -138,6 +138,8 @@ namespace IntegrationWithQuickbooks.Controllers
         }
         public ActionResult AddItem() 
         {
+            var Accountnames = db.Accounts.ToList();
+            ViewBag.Accountnames = Accountnames;    
             return View(); 
         }
         [HttpPost]
@@ -148,12 +150,16 @@ namespace IntegrationWithQuickbooks.Controllers
                 context.Items.Add(model);
                 context.SaveChanges();
             }
-            return View();
+            return RedirectToAction("ViewItem");
         }
         public IActionResult AddPurchaseOrder()
          {
-            /*var vendornames = db.Vendors.ToList();
-            ViewBag.Vendornames = vendornames;*/
+            var vendornames = db.Vendors.ToList();
+            var Accountnames = db.Accounts.ToList();
+            var Itemnames = db.Items.ToList();
+            ViewBag.Vendornames = vendornames;
+            ViewBag.Accountnames = Accountnames;
+            ViewBag.Itemnames = Itemnames;
             return View();
          }
         [HttpPost]
@@ -165,9 +171,10 @@ namespace IntegrationWithQuickbooks.Controllers
             using (var context = new NewDBContext())
             {
                 context.Pos.Add(model);
+               /* context.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;*/
                 context.SaveChanges();
             }
-            return View();
+            return RedirectToAction("ViewPurchaseOrder");
         }
         [HttpGet]
         public IActionResult ViewPurchaseOrder()
@@ -180,6 +187,40 @@ namespace IntegrationWithQuickbooks.Controllers
 
             return View(data);
         }
+
+        public IActionResult AddBill()
+        {
+            var vendornames = db.Vendors.ToList();
+            var Accountnames = db.Accounts.ToList();
+            var Itemnames = db.Items.ToList();
+            ViewBag.Vendornames = vendornames;
+            ViewBag.Accountnames = Accountnames;
+            ViewBag.Itemnames = Itemnames;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddBill(_Bill model)
+        {
+            using (var context = new NewDBContext())
+            {
+                context.Bills.Add(model);
+                /* context.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;*/
+                context.SaveChanges();
+            }
+            return RedirectToAction("ViewBill");
+        }
+        [HttpGet]
+        public IActionResult ViewBill()
+        {
+            var data = new List<_Bill>();
+            using (var context = new NewDBContext())
+            {
+                data = context.Bills.ToList();
+            }
+
+            return View(data);
+        }
+
         [HttpGet]
         public IActionResult viewaccount()
         {

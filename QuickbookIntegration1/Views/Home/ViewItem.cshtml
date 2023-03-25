@@ -4,12 +4,12 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<h1>ViewItem</h1>
+<h1>ITEMS</h1>
 
-<div style="width:100%;display:flex;justify-content:flex-end;padding-inline:7rem;padding-bottom:1.5rem;gap:2rem;">
+<div class="btn-add">
     @*</div>
     <div style="width:100%;display:flex;justify-content:flex-start;padding-inline:10rem;padding-bottom:1.5rem">*@
-    <a asp-action="AddItem" asp-controller="Home" class="btn btn-primary btn-sm">Create New</a>
+    <a asp-action="AddItem" asp-controller="Home" class="btn new-btn"><i class="fa-sharp fa-solid fa-plus" style="margin-right:1rem"></i>Create New</a>
 </div>
 <table class="table">
     <thead>
@@ -19,6 +19,15 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                Account ID
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SKU)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cost)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.QBitem)
@@ -36,12 +45,22 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
+                    @Html.DisplayFor(modelItem => item.expenseaccref)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SKU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cost)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.QBitem)
                 </td>
+
             </tr>
         }
     </tbody>
 </table>
-<div style="width:100%;display:flex;justify-content:flex-end;padding-inline:7rem">
-    <a asp-action="QBitem" asp-controller="App" class="btn btn-primary btn-sm">Submit</a>
+<div class="btn-add">
+    <a asp-action="QBitem" asp-controller="App" class="btn new-btn">Sync<i class="fa-sharp fa-solid fa-arrows-rotate" style="margin-left:1rem"></i></a>
 </div>

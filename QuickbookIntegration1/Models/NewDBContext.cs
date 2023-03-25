@@ -17,7 +17,7 @@ namespace QuickbookIntegration1.Models
         }
 
         public virtual DbSet<account> Accounts { get; set; } = null!;
-        public virtual DbSet<Bill> Bills { get; set; } = null!;
+        public virtual DbSet<_Bill> Bills { get; set; } = null!;
         public virtual DbSet<_Item> Items { get; set; } = null!;
         public virtual DbSet<Po> Pos { get; set; } = null!;
         public virtual DbSet<vendor> Vendors { get; set; } = null!;
@@ -26,7 +26,6 @@ namespace QuickbookIntegration1.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=NewDB; Trusted_Connection=true;Integrated Security=True;TrustServerCertificate=True");
             }
         }
@@ -60,28 +59,19 @@ namespace QuickbookIntegration1.Models
                 /*entity.Property(e => e.SyncToken).ValueGeneratedOnAdd();*/
             });
 
-            modelBuilder.Entity<Bill>(entity =>
+            modelBuilder.Entity<_Bill>(entity =>
             {
                 entity.ToTable("bill");
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.CurrencyRef)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Line0N)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("Line [0..n]");
-
-                entity.Property(e => e.SyncToken).ValueGeneratedOnAdd();
-
-                entity.HasOne(d => d.VendorRefNavigation)
-                    .WithMany(p => p.Bills)
-                    .HasForeignKey(d => d.VendorRef)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Bill_Vendor");
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.VendorRef);
+                entity.Property(e => e.apaccountRef);
+                entity.Property(e => e.due);
+                entity.Property(e => e.itemref);
+                entity.Property(e => e.Qty);
+                entity.Property(e => e.Billno);
+                entity.Property(e => e.rate);
+               /* entity.Property(e => e.vendorid);*/
+                entity.Property(e => e.QBbillid).HasDefaultValue(null);
             });
 
             modelBuilder.Entity<_Item>(entity =>
@@ -93,8 +83,11 @@ namespace QuickbookIntegration1.Models
                 entity.Property(e => e.Name)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+                entity.Property(e => e.expenseaccref);
 
                 entity.Property(e => e.QBitem).HasDefaultValue(null);
+                entity.Property(e => e.SKU);
+                entity.Property(e => e.cost);
             });
 
             modelBuilder.Entity<Po>(entity =>
@@ -102,26 +95,25 @@ namespace QuickbookIntegration1.Models
                 entity.ToTable("po");
 
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
-
-                entity.Property(e => e.ApaccountRef).HasColumnName("APAccountRef");
-
-                entity.Property(e => e.CurrencyRef)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e=>e.QBid).HasDefaultValue(null);
-
-                entity.Property(e => e.Line0N)
+                entity.Property(e => e.VendorRef);
+                entity.Property(e => e.itemid);
+                entity.Property(e => e.itemaccref);
+                entity.Property(e => e.due);
+                entity.Property(e => e.qty);
+                entity.Property(e => e.rate);
+                /*entity.Property(e => e.vendorid);*/
+                entity.Property(e => e.QBid).HasDefaultValue(null);
+                /*entity.Property(e => e.Line0N)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("Line [0..n]");
-                entity.Property(e => e.VendorRef);
+                entity.Property(e => e.VendorRef);*/
 
-                entity.HasOne(d => d.VendorRefNavigation)
+               /* entity.HasOne(d => d.VendorRefNavigation)
                     .WithMany(p => p.Pos)
                     .HasForeignKey(d => d.VendorRef)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_PO_Vendor");
+                    .HasConstraintName("FK_PO_Vendor")*/
             });
 
             modelBuilder.Entity<vendor>(entity =>

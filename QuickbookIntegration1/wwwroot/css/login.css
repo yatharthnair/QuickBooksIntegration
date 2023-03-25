@@ -138,17 +138,19 @@ h2 {
     background-color: white;
     color: #fff;
     border-radius: 2px;
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 3px 0 #f8fafb;
     padding: 0 16px;
     font-size: 14px;
     line-height: 40px;
     cursor: pointer;
 }
-
     .g-signin-button:hover {
-        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+       /* border: 2px solid black;
+        background-color: rgb(243, 242, 242);*/
+        transform:scale(1.1);
+        transition-duration:10ms;
+        
     }
-
 .icon-wrapper {
     display: inline-block;
     vertical-align: middle;
@@ -245,15 +247,34 @@ h2 {
   opacity: .2; }
 
 .sidebar {
-   flex:1;
+    flex: 1;
+    background-color: #393a3d;
+    color:white;
+}
+.dash-cont{
+    display:flex;
 }
 
 .dashbody {
     flex:4;
+    padding:2rem;
 }
 
 .dash{
-    height:80vh;
+    height:92vh;
     display:flex;
     gap:2em;
+   
+}
+.new-btn {
+    background-color: #2ca01c;
+    border-radius:2cm;
+    color:white;
+}
+.btn-add {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 1.5rem;
+    gap: 2rem;
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KX0a0Lou6gNJqLrVx1RTdUUuNZB6WdIEapGJuuZdmQs=",
+  "Hash": "k7Cf3SQx6Bg5c00flUNWxtt1F22Nfc30HOfeIxJiehs=",
   "Source": "QuickbookIntegration1",
   "BasePath": "_content/QuickbookIntegration1",
   "Mode": "Default",
@@ -168,6 +168,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\login.css"
+    },
+    {
+      "Identity": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\wwwroot\\css\\material-dashboard.css",
+      "SourceId": "QuickbookIntegration1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\wwwroot\\",
+      "BasePath": "_content/QuickbookIntegration1",
+      "RelativePath": "css/material-dashboard.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\material-dashboard.css"
+    },
+    {
+      "Identity": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\wwwroot\\css\\material-dashboard.min.css",
+      "SourceId": "QuickbookIntegration1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\wwwroot\\",
+      "BasePath": "_content/QuickbookIntegration1",
+      "RelativePath": "css/material-dashboard.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\material-dashboard.min.css"
     },
     {
       "Identity": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\wwwroot\\css\\owl.carousel.min.css",
@@ -576,6 +610,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\bg_1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\wwwroot\\images\\google.svg",
+      "SourceId": "QuickbookIntegration1",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\wwwroot\\",
+      "BasePath": "_content/QuickbookIntegration1",
+      "RelativePath": "images/google.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\google.svg"
     },
     {
       "Identity": "C:\\Users\\lmgcs\\Downloads\\QuickBooksIntegration-backup2\\QuickBooksIntegration-main - Copy\\QuickbookIntegration1\\wwwroot\\images\\googleImg.png",

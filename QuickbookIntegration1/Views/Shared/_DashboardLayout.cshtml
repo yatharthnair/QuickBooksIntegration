@@ -7,20 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="~/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="~/fonts/icomoon/style.css" asp-append-version="true">
 
-    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css" asp-append-version="true">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" asp-append-version="true">
+  
+
 
     <!-- Style -->
-    <link rel="stylesheet" href="~/css/login.css">
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true">
+    <script src="https://kit.fontawesome.com/e8390de748.js" crossorigin="anonymous"></script>
 
 </head>
+
 <body>
     <header class="dashHeader">
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow" style="background-color:#393a3d;">
             <div class="container-fluid d-flex" style="gap:1em;">
                 <img src="~/images/pngwing.com.png" alt="Navlogo" class="navlogo"/>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -30,41 +34,43 @@
                 <div class="navbar-collapse d-flex collapsed-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item d-flex">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="AddVendor">DASHBOARD</a>
+                            <a class="nav-link" style="color:white" asp-controller="Home" asp-action="ViewVendor"><i class="fa-sharp fa-solid fa-house"></i></a>
                         </li>
                         <li>
-                            <a class="nav-link text-dark d-flex justify-content-lg-end"asp-action="Initiateoauth2" asp-controller="App">Login</a>
+                            <a class="nav-link d-flex justify-content-lg-end" style="color:white" asp-action="Initiateoauth2" asp-controller="App">Login</a>
                         </li>
                     </ul>
                 </div>
                 <div class="d-flex m-auto">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Log Out</a>
+                    <a class="nav-link" style="color:white" asp-area="" asp-controller="Home" asp-action="Logout">Log Out<i class="fa-sharp fa-solid fa-right-from-bracket" style="margin-left:1rem"></i></a>
                 </div>
             </div>
         </nav>
     </header>
+    <div class="dash-cont">
     <div class="dash">
         <!-- Sidebar-->
-        <div class="border-end sidebar" id="sidebar-wrapper">
-            @*<div class="sidebar-heading border-bottom bg-light">TASKS</div>*@
+        <div class="border-end sidebar" id="sidebar-wrapper" style="display:contents">
+      
             <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="AddVendor">Add Vendor</a>
-                <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="AddAccount">Add Account</a>
-                <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="ViewVendor">View Vendor</a>
-                <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="viewaccount">View Account</a>
-                <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="AddPurchaseOrder">Add Purchase Order</a>
-                <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="ViewPurchaseOrder">View Purchase Order</a>
-                <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="AddItem">Add Item</a>
-                <a class="list-group-item list-group-item-action sideBar" asp-controller="Home" asp-action="ViewItem">View Item</a>
-                <a class="list-group-item list-group-item-action sideBar" asp-controller="App" asp-action="GenBill">Generate Bill</a>
+                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddVendor">Add Vendor</a>
+                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddAccount">Add Account</a>
+                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="ViewVendor">View Vendor</a>
+                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="viewaccount">View Account</a>
+                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddPurchaseOrder">Add Purchase Order</a>
+                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="ViewPurchaseOrder">View Purchase Order</a>
+                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddItem">Add Item</a>
+                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="ViewItem">View Item</a>
+                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddBill">Add Bill</a>
+                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="ViewBill">View Bill</a>
             </div>
         </div>
+    </div>
         <div class="dashbody">
             @RenderBody()
         </div>
-        <!-- Page content wrapper-->
-
     </div>
+        <!-- Page content wrapper-->
 
    @* <footer class="border-top footer text-muted">
         <div class="container">

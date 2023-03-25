@@ -7,7 +7,7 @@ namespace QuickbookIntegration1.Models
     {
         public vendor()
         {
-            Bills = new HashSet<Bill>();
+            Bills = new HashSet<_Bill>();
             Pos = new HashSet<Po>();
         }
 
@@ -19,7 +19,7 @@ namespace QuickbookIntegration1.Models
         public string Gstin { get; set; } = null!;
         public int BusinessNumber { get; set; }
         public string? QBid {get; set; }
-        public virtual ICollection<Bill> Bills { get; set; }
+        public virtual ICollection<_Bill> Bills { get; set; }
         public virtual ICollection<Po> Pos { get; set; }
     }
 }

@@ -8,5 +8,9 @@ namespace QuickbookIntegration1.Models
         public int Id { get; set; }
         public string Name { get; set; } = null!;
         public string? QBitem { get; set; }
+        public int? expenseaccref { get; set; }
+        public int? SKU {  get; set; }
+        public decimal? cost { get; set; }
+
     }
 }

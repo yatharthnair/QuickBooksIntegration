@@ -3,11 +3,11 @@
     ViewData["Title"] = "AddVendor";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
-<h1>Add Vendor</h1>
+@*<h1>Add Vendor</h1>*@
 
-<div class="flex-row mt-4" id="div2">
-
-    <form method="post" asp-controller="Home" asp-action="AddVendor">
+<div class="flex-row mt-4" id="div2" style="width:50%">
+    <h1><i class="fa-sharp fa-solid fa-user-plus fa-lg" style="margin-right:1rem"></i>Add Vendor</h1>
+    <form method="post"style="margin-top:1.5rem" asp-controller="Home" asp-action="AddVendor">
 
      @*   <div class="form-group">
             <label for="Id">ID : </label>

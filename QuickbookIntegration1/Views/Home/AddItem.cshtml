@@ -13,14 +13,24 @@
             <label for="Name">Name</label>
             <input type="text" class="form-control" id="Name" asp-for="Name">
         </div>
-  @*      <div class="form-group">
-            <label for="AcctNum">Account No.</label>
-            <input type="tel" class="form-control" id="AcctNum" asp-for="">
+        <div class="form-group">
+            <label for="ApaccountRef">Select Account </label>
+            <select class="form-control" id="Apaccountref" required asp-for="expenseaccref">
+                <option value="">Select</option>
+                @foreach (var item in ViewBag.Accountnames)
+                {
+                    <option value="@item.QBaccid">@item.Name</option>
+                }
+            </select>
         </div>
         <div class="form-group">
-            <label for="AcctNum">Current Balance</label>
-            <input type="tel" class="form-control" id="AcctNum" asp-for="CurrentBalance">*@
-        @*</div>*@
+            <label for="AcctNum">SKU</label>
+            <input type="tel" class="form-control" id="AcctNum" asp-for="SKU">
+        </div>
+        <div class="form-group">
+            <label for="AcctNum">Cost</label>
+            <input type="tel" class="form-control" id="AcctNum" asp-for="cost">
+        </div>
         <button class="btn btn-primary"> Submit</button>
     </form>
 
