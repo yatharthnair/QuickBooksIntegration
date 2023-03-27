@@ -111,7 +111,7 @@ namespace QuickbookIntegration1.Controllers
                 }
                 return View();
             }
-            return RedirectToAction("Home", "AddVendor");
+            return RedirectToAction("Home", "ViewVendor");
 
         }
 
@@ -136,8 +136,8 @@ namespace QuickbookIntegration1.Controllers
             {
                 /*account.Id = item.Id.ToString();*/
                 account.Name = item.Name;
-                account.AccountType = AccountTypeEnum.Income;
-                account.AccountSubType = AccountSubTypeEnum.PersonalIncome.ToString();
+                account.AccountType = AccountTypeEnum.AccountsReceivable;
+                account.AccountSubType = AccountSubTypeEnum.AccountsReceivable.ToString();
                 account.AcctNum = item.AcctNum;
                 account.CurrentBalance = (decimal)item.CurrentBalance;
                 Account addedobj = dataService.Add<Account>(account);
@@ -159,7 +159,7 @@ namespace QuickbookIntegration1.Controllers
                 }
 
             }
-            return View();
+            return RedirectToAction("Home", "viewaccount");
         }
 
         public ActionResult QBitem()
@@ -209,7 +209,7 @@ namespace QuickbookIntegration1.Controllers
                     }
                 }
             }
-            return View();
+            return RedirectToAction("Home", "ViewItem");
         }
         public ActionResult QBpurchase()
         {
@@ -273,7 +273,7 @@ namespace QuickbookIntegration1.Controllers
                     }
                 }
             }
-            return View();
+            return RedirectToAction("Home", "ViewPurchaseOrder");
         }
 
 
@@ -329,9 +329,10 @@ namespace QuickbookIntegration1.Controllers
                 }
             }
 
-            return View();
+            return RedirectToAction("Home", "ViewBill");
         }
-       /* public ActionResult GenBill()
+       
+        public ActionResult Customer()
         {
             string access_token = _context.HttpContext.Session.GetString("Access_token") as string;
             string refresh_token = _context.HttpContext.Session.GetString("Refresh_token") as string;
@@ -345,30 +346,90 @@ namespace QuickbookIntegration1.Controllers
             serviceContext.IppConfiguration.BaseUrl.Qbo = "https://sandbox-quickbooks.api.intuit.com/";
             serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
             var dataService = new DataService(serviceContext);
-            Intuit.Ipp.Data.Bill bill = new Intuit.Ipp.Data.Bill();
-            bill.VendorRef = new ReferenceType() { name = "Gaming Cafe", Value = "67" };
-            Line[] line = new Line[1];
-            line[0] = new Line();
-            line[0].DetailType = LineDetailTypeEnum.PurchaseOrderItemLineDetail;
-            PurchaseOrderItemLineDetail purchaseOrderItemLine = new PurchaseOrderItemLineDetail();
-            line[0].AnyIntuitObject = purchaseOrderItemLine;
-            line[0].DetailTypeSpecified = true;
-            line[0].Description = "Logitech";
-            line[0].Amount = 3000;
-            line[0].AmountSpecified = true;
+            Intuit.Ipp.Data.Customer customer = new Intuit.Ipp.Data.Customer();
+            var data = db.cust.Where(c => c.QBcustid == null).ToList();
+            foreach (var item in data)
+            {
+                customer.DisplayName = item.DisplayName;
+                customer.PrimaryEmailAddr = new EmailAddress();
+                customer.PrimaryEmailAddr.Address = item.Email;
+                customer.Mobile = new TelephoneNumber();
+                customer.Mobile.FreeFormNumber = item.Mobile;
+                Intuit.Ipp.Data.Customer addedcustomer = dataService.Add<Customer>(customer);
+                var QBid = addedcustomer.Id;
+                using (var context = new NewDBContext())
+                {
+                    var item1 = context.cust.Where(x => x.Id == item.Id).FirstOrDefault();
 
-            bill.Line = line;
+                    if (item1 != null)
+                    {
+                        // Update the QBID property of the retrieved entity with the new QBID value
+                        item1.QBcustid = QBid.ToString();
+                        context.Entry(item1).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                        // Save the changes back to the database
+                        context.SaveChanges();
+                    }
+                }
+            }
 
-            LinkedTxn[] linkedTxns = new LinkedTxn[1];
-            linkedTxns[0] = new LinkedTxn();
-            *//*linkedTxns[0].TxnId = "150";*//*
-            linkedTxns[0].TxnLineId = "150";
-            bill.LinkedTxn = linkedTxns;
+            return RedirectToAction("Home","ViewCustomer");
+        }
+        public ActionResult Invoice() 
+        {
+            string access_token = _context.HttpContext.Session.GetString("Access_token") as string;
+            string refresh_token = _context.HttpContext.Session.GetString("Refresh_token") as string;
+            string realmId = _context.HttpContext.Session.GetString("RealmId") as string;
+            var principal = User as ClaimsPrincipal;
+            OAuth2RequestValidator oauthValidator = new OAuth2RequestValidator(access_token);
 
-            Intuit.Ipp.Data.Bill addedobj = dataService.Add<Intuit.Ipp.Data.Bill>(bill);
 
-            return View();
-        }*/
+            // Create a ServiceContext with Auth tokens and realmId
+            ServiceContext serviceContext = new ServiceContext(realmId, IntuitServicesType.QBO, oauthValidator);
+            serviceContext.IppConfiguration.BaseUrl.Qbo = "https://sandbox-quickbooks.api.intuit.com/";
+            serviceContext.IppConfiguration.MinorVersion.Qbo = "65";
+            var dataService = new DataService(serviceContext);
+            Intuit.Ipp.Data.Invoice so=new Intuit.Ipp.Data.Invoice();
+            var data = db.inv.Where(c => c.QBInvid == null).ToList();
+            foreach (var item in data)
+            {
+                so.CustomerRef = new ReferenceType() { Value = item.customerref };
+                Line[] line = new Line[1];
+                line[0] = new Line();
+                line[0].DetailType = LineDetailTypeEnum.SalesItemLineDetail;
+                line[0].DetailTypeSpecified = true;
+                SalesItemLineDetail salesItemLineDetail = new SalesItemLineDetail();
+                salesItemLineDetail.Qty = item.qty;
+                salesItemLineDetail.ItemRef = new ReferenceType() { Value = item.itemref };
+                salesItemLineDetail.DiscountRate = item.rate;
+                /*salesItemLineDetail.DiscountAmt = 150;*/
+                salesItemLineDetail.DiscountRateSpecified = true;
+                salesItemLineDetail.DiscountAmtSpecified = true;
+                line[0].AnyIntuitObject = salesItemLineDetail;
+                line[0].Amount = item.qty * item.rate;
+                line[0].AmountSpecified = true;
+                so.Line = line;
+                so.EmailStatus = EmailStatusEnum.EmailSent;
+                so.EmailStatusSpecified = true;
+                so.BillEmail = new EmailAddress();
+                so.BillEmail.Address = item.Email;
+                Intuit.Ipp.Data.Invoice addedso = dataService.Add<Intuit.Ipp.Data.Invoice>(so);
+                var QBid = addedso.Id;
+                using (var context = new NewDBContext())
+                {
+                    var item1 = context.inv.Where(x => x.id == item.id).FirstOrDefault();
+
+                    if (item1 != null)
+                    {
+                        // Update the QBID property of the retrieved entity with the new QBID value
+                        item1.QBInvid = QBid.ToString();
+                        context.Entry(item1).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                        // Save the changes back to the database
+                        context.SaveChanges();
+                    }
+                }
+            }
+            return RedirectToAction("Home", "ViewInvoice");
+        }
     }
 }
   

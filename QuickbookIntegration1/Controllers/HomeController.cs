@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
-using QuickbookIntegration1.Models;
 using Intuit.Ipp.Data;
 using Intuit.Ipp.DataService;
 using Intuit.Ipp.OAuth2PlatformClient;
@@ -14,8 +13,9 @@ using System;
 using Intuit.Ipp.Core;
 using static System.Net.WebRequestMethods;
 using Microsoft.CodeAnalysis.Diagnostics;
+using QuickbookIntegration1.Models;
 
-namespace IntegrationWithQuickbooks.Controllers
+namespace QuickbookIntegration1.Controllers
 {
     public class HomeController : Controller
 
@@ -72,10 +72,10 @@ namespace IntegrationWithQuickbooks.Controllers
         public IActionResult AddVendor()
         {
             var userEmail = _context.HttpContext.Session.GetString("email");
-            if (userEmail==null || userEmail == "")
+            if (userEmail == null || userEmail == "")
             {
 
-               return RedirectToAction("Index");
+                return RedirectToAction("Index");
             }
 
             return View();
@@ -110,20 +110,20 @@ namespace IntegrationWithQuickbooks.Controllers
             _context.HttpContext.Session.Clear();
             return RedirectToAction("Index");
         }
-         public IActionResult AddAccount()
-         {
-             return View();
-         }
-         [HttpPost]
-         public ActionResult AddAccount(account model)
-         {
-             using (var context = new NewDBContext())
-             {
-                 context.Accounts.Add(model);
-                 context.SaveChanges();
-             }
+        public IActionResult AddAccount()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddAccount(account model)
+        {
+            using (var context = new NewDBContext())
+            {
+                context.Accounts.Add(model);
+                context.SaveChanges();
+            }
             return RedirectToAction("viewaccount");
-         }
+        }
 
         [HttpGet]
         public IActionResult ViewItem()
@@ -136,11 +136,11 @@ namespace IntegrationWithQuickbooks.Controllers
 
             return View(data);
         }
-        public ActionResult AddItem() 
+        public ActionResult AddItem()
         {
             var Accountnames = db.Accounts.ToList();
-            ViewBag.Accountnames = Accountnames;    
-            return View(); 
+            ViewBag.Accountnames = Accountnames;
+            return View();
         }
         [HttpPost]
         public ActionResult AddItem(_Item model)
@@ -153,7 +153,7 @@ namespace IntegrationWithQuickbooks.Controllers
             return RedirectToAction("ViewItem");
         }
         public IActionResult AddPurchaseOrder()
-         {
+        {
             var vendornames = db.Vendors.ToList();
             var Accountnames = db.Accounts.ToList();
             var Itemnames = db.Items.ToList();
@@ -161,17 +161,17 @@ namespace IntegrationWithQuickbooks.Controllers
             ViewBag.Accountnames = Accountnames;
             ViewBag.Itemnames = Itemnames;
             return View();
-         }
+        }
         [HttpPost]
         public ActionResult AddPurchaseOrder(Po model)
         {
             /*AddPurchaseOrder();*/
-  /*        var vendornames = db.Vendors.ToList();
-            ViewBag.Vendornames = vendornames;*/
+            /*        var vendornames = db.Vendors.ToList();
+                      ViewBag.Vendornames = vendornames;*/
             using (var context = new NewDBContext())
             {
                 context.Pos.Add(model);
-               /* context.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;*/
+                /* context.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;*/
                 context.SaveChanges();
             }
             return RedirectToAction("ViewPurchaseOrder");
@@ -231,6 +231,80 @@ namespace IntegrationWithQuickbooks.Controllers
             }
 
             return View(data);
+        }
+        public IActionResult AddCustomer()
+        {
+            var userEmail = _context.HttpContext.Session.GetString("email");
+            if (userEmail == null || userEmail == "")
+            {
+
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult ViewCustomer()
+        {
+            var data = new List<customer>();
+            using (var context = new NewDBContext())
+            {
+                data = context.cust.ToList();
+            }
+
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult AddCustomer(customer model)
+        {
+            using (var context = new NewDBContext())
+            {
+                context.cust.Add(model);
+                context.SaveChanges();
+            }
+            return RedirectToAction("ViewCustomer");
+        }
+
+        public IActionResult AddInvoice()
+        {
+            var userEmail = _context.HttpContext.Session.GetString("email");
+            if (userEmail == null || userEmail == "")
+            {
+
+                return RedirectToAction("Index");
+            }
+            var Customernames = db.cust.ToList();
+            var Itemnames=db.Items.ToList();
+            ViewBag.Customernames = Customernames;
+            ViewBag.Itemnames = Itemnames;
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult ViewInvoice()
+        {
+            var data = new List<invoice>();
+            using (var context = new NewDBContext())
+            {
+                data = context.inv.ToList();
+            }
+
+            return View(data);
+        }
+
+
+        [HttpPost]
+        public IActionResult AddInvoice(invoice model)
+        {
+            using (var context = new NewDBContext())
+            {
+                context.inv.Add(model);
+                context.SaveChanges();
+            }
+            return RedirectToAction("ViewInvoice");
         }
 
         /*[HttpPost]

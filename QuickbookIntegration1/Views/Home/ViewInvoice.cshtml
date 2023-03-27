@@ -1,0 +1,71 @@
+﻿@model IEnumerable<QuickbookIntegration1.Models.invoice>
+@{
+    ViewData["Title"] = "ViewInvoice";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1>Invoices</h1>
+
+<div class="btn-add">
+    @*</div>
+    <div style="width:100%;display:flex;justify-content:flex-start;padding-inline:10rem;padding-bottom:1.5rem">*@
+    <a asp-action="AddInvoice" asp-controller="Home" class="btn new-btn"><i class="fa-sharp fa-solid fa-plus" style="margin-right:1rem"></i>Create New</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.customerref)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.itemref)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.qty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QBInvid)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.customerref)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.itemref)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.qty)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QBInvid)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="btn-add">
+    <a asp-action="Invoice" asp-controller="App" class="btn new-btn">Sync<i class="fa-sharp fa-solid fa-arrows-rotate" style="margin-left:1rem"></i></a>
+</div>

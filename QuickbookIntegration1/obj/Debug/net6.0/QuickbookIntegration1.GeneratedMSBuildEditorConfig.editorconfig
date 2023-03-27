@@ -36,6 +36,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRCaWxsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/lmgcs/Downloads/QuickBooksIntegration-backup2/QuickBooksIntegration-main - Copy/QuickbookIntegration1/Views/Home/AddCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRDdXN0b21lci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lmgcs/Downloads/QuickBooksIntegration-backup2/QuickBooksIntegration-main - Copy/QuickbookIntegration1/Views/Home/AddInvoice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRJbnZvaWNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/lmgcs/Downloads/QuickBooksIntegration-backup2/QuickBooksIntegration-main - Copy/QuickbookIntegration1/Views/Home/AddItem.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZGRJdGVtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -58,6 +66,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/lmgcs/Downloads/QuickBooksIntegration-backup2/QuickBooksIntegration-main - Copy/QuickbookIntegration1/Views/Home/ViewBill.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3QmlsbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lmgcs/Downloads/QuickBooksIntegration-backup2/QuickBooksIntegration-main - Copy/QuickbookIntegration1/Views/Home/ViewCustomer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3Q3VzdG9tZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/lmgcs/Downloads/QuickBooksIntegration-backup2/QuickBooksIntegration-main - Copy/QuickbookIntegration1/Views/Home/ViewInvoice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaWV3SW52b2ljZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/lmgcs/Downloads/QuickBooksIntegration-backup2/QuickBooksIntegration-main - Copy/QuickbookIntegration1/Views/Home/ViewItem.cshtml]

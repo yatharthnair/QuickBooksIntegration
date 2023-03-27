@@ -13,6 +13,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/css/bootstrap.min.css" asp-append-version="true">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap" rel="stylesheet">
   
 
 
@@ -36,6 +39,7 @@
                         <li class="nav-item d-flex">
                             <a class="nav-link" style="color:white" asp-controller="Home" asp-action="ViewVendor"><i class="fa-sharp fa-solid fa-house"></i></a>
                         </li>
+                        
                         <li>
                             <a class="nav-link d-flex justify-content-lg-end" style="color:white" asp-action="Initiateoauth2" asp-controller="App">Login</a>
                         </li>
@@ -52,17 +56,19 @@
         <!-- Sidebar-->
         <div class="border-end sidebar" id="sidebar-wrapper" style="display:contents">
       
-            <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddVendor">Add Vendor</a>
-                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddAccount">Add Account</a>
-                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="ViewVendor">View Vendor</a>
-                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="viewaccount">View Account</a>
-                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddPurchaseOrder">Add Purchase Order</a>
-                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="ViewPurchaseOrder">View Purchase Order</a>
-                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddItem">Add Item</a>
-                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="ViewItem">View Item</a>
-                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddBill">Add Bill</a>
-                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="ViewBill">View Bill</a>
+            <div class="list-group">
+@*                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddVendor">Add Vendor</a>
+                <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddAccount">Add Account</a>*@
+                <a class="list-group-item list-group-item-action sidebar" asp-controller="Home" asp-action="ViewVendor">Vendor</a>
+                <a class="list-group-item list-group-item-action sidebar" asp-controller="Home" asp-action="viewaccount">Account</a>
+               @* <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddPurchaseOrder">Add Purchase Order</a>*@
+                <a class="list-group-item list-group-item-action sidebar" asp-controller="Home" asp-action="ViewPurchaseOrder">Purchase Order</a>
+               @* <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddItem">Add Item</a>*@
+                <a class="list-group-item list-group-item-action sidebar" asp-controller="Home" asp-action="ViewItem">Item</a>
+           @*     <a class="list-group-item list-group-item-action sideBar sidebar" asp-controller="Home" asp-action="AddBill">Add Bill</a>*@
+                <a class="list-group-item list-group-item-action sidebar" asp-controller="Home" asp-action="ViewBill">Bill</a>
+                <a class="list-group-item list-group-item-action sidebar" asp-controller="Home" asp-action="ViewCustomer">Customer</a>
+                <a class="list-group-item list-group-item-action sidebar" asp-controller="Home" asp-action="ViewInvoice">Invoice</a>
             </div>
         </div>
     </div>

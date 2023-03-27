@@ -1,0 +1,47 @@
+﻿@model QuickbookIntegration1.Models.invoice
+@{
+    ViewData["Title"] = "AddInvoice";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<h1><i class="fa-sharp fa-solid fa-user-plus fa-lg" style="margin-right:1rem"></i>Create Invoice</h1>
+
+<div class="flex-row mt-4" id="div2">
+
+    <form method="post" asp-controller="Home" asp-action="AddInvoice">
+        <div class="form-group">
+            <label for="VendorRef">Select Customer</label>
+            <select class="form-control" id="VendorRef" required asp-for="customerref">
+                <option>Select</option>
+                @foreach (var item in ViewBag.Customernames)
+                {
+                    <option value="@item.QBcustid">@item.DisplayName</option>
+                }
+            </select>
+        </div> 
+        <div class="form-group">
+            <label for="Item">Select Item </label>
+            <select class="form-control" Id="item" required asp-for="itemref">
+                <option>Select</option>
+                @foreach (var item in ViewBag.Itemnames)
+                {
+                    <option value="@item.QBitem">@item.Name</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="Name">Qty</label>
+            <input type="text" class="form-control" id="Name" asp-for="qty">
+        </div>
+        <div class="form-group">
+            <label for="AcctNum">Rate</label>
+            <input type="text" class="form-control" id="AcctNum" asp-for="rate">
+        </div>
+        <div class="form-group">
+            <label for="AcctNum">Email</label>
+            <input type="text" class="form-control" id="AcctNum" asp-for="Email">
+        </div>
+        <button class="btn btn-primary"> Submit</button>
+    </form>
+
+</div>

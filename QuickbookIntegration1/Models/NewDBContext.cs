@@ -21,6 +21,8 @@ namespace QuickbookIntegration1.Models
         public virtual DbSet<_Item> Items { get; set; } = null!;
         public virtual DbSet<Po> Pos { get; set; } = null!;
         public virtual DbSet<vendor> Vendors { get; set; } = null!;
+        public virtual DbSet<customer> cust { get; set; } = null!;
+        public virtual DbSet<invoice> inv { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -137,6 +139,26 @@ namespace QuickbookIntegration1.Models
                     .IsUnicode(false);
                 entity.Property(e => e.QBid).HasDefaultValue(null);
                 /* entity.Property(e => e.SyncToken).ValueGeneratedOnAdd();*/
+            });
+            modelBuilder.Entity<customer>(entity =>
+            {
+                entity.ToTable("Customer");
+                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.DisplayName);
+                entity.Property(e => e.Email);
+                entity.Property(e => e.Mobile);
+                entity.Property(e => e.QBcustid).HasDefaultValue(null);
+            });
+            modelBuilder.Entity<invoice>(entity =>
+            {
+                entity.ToTable("Invoice");
+                entity.Property(e => e.id).ValueGeneratedOnAdd();
+                entity.Property(e => e.customerref);
+                entity.Property(e => e.itemref);
+                entity.Property(e => e.Email);
+                entity.Property(e => e.qty);
+                entity.Property(e => e.rate);
+                entity.Property(e=>e.QBInvid).HasDefaultValue(null);
             });
 
             OnModelCreatingPartial(modelBuilder);
